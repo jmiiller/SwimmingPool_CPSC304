@@ -120,6 +120,17 @@
 </p>
 </form>
 
+<p> Delete Location </p>
+<p><font size="2">LocationID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedLocationID_location" size="6">
+      <input type="submit" value="delete location" name="delete_location">
+   </p>
+</form>
+
 <!-- EquipmentType -->
 <p>Insert Equipment Type</p>
 <p>
@@ -150,6 +161,17 @@
    <input type="text" name="updatedType_equipmenttype"size="30">
    <input type="submit" value="update equipment type" name="update_equipmenttype">
 </p>
+</form>
+
+<p> Delete EquipmentType </p>
+<p><font size="2">EquipmentID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedEquipmentID_equipmenttype" size="6">
+      <input type="submit" value="delete EquipmentType" name="delete_equipmenttype">
+   </p>
 </form>
 
 <!-- Equipment -->
@@ -188,6 +210,19 @@
    <input type="text" name="updatedQuantity_equipment"size="30">
    <input type="submit" value="update equipment" name="update_equipment">
 </p>
+</form>
+
+<p> Delete Equipment </p>
+<p><font size="2">EquipmentID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedEquipmentID_equipment" size="6">
+      <input type="text" name="deletedLocationID_equipment" size="6">
+      <input type="submit" value="delete Equipment" name="delete_equipment">
+   </p>
 </form>
 
 <!-- Patron -->
@@ -366,6 +401,17 @@
 </p>
 </form>
 
+<p> Delete Membership </p>
+<p><font size="2">MembershipID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedMembershipID_membership" size="6">
+      <input type="submit" value="delete membership" name="delete_membership">
+   </p>
+</form>
+
 <!-- Dependents -->
 <p>Insert Dependents</p>
 <p>
@@ -384,6 +430,19 @@
       <input type="text" name="insSex_dependents"size="8">
       <input type="text" name="insRelationshipToPatron_dependents"size="10">
       <input type="submit" value="insert dependents" name="insert_dependents">
+   </p>
+</form>
+
+<p> Delete Dependents </p>
+<p><font size="2">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  PatronID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedName_dependents" size="6">
+      <input type="text" name="deletedPatronID_dependents" size="6">
+      <input type="submit" value="delete dependents" name="delete_dependents">
    </p>
 </form>
 
@@ -469,6 +528,21 @@
   <input type="text" name="updatedLeaseEndDate_patronleaseslocker"size="8">
   <input type="submit" value="update PatronLeasesLocker" name="update_patronleaseslocker">
 </p>
+</form>
+
+<p> Delete PatronLeasesLocker </p>
+<p><font size="2">PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LockerNum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedPatronID_patronleaseslocker" size="6">
+      <input type="text" name="deletedLockerNum_patronleaseslocker" size="6">
+      <input type="text" name="deletedLocationID_patronleaseslocker" size="6">
+      <input type="submit" value="delete patronleaseslocker" name="delete_patronleaseslocker">
+   </p>
 </form>
 
 <html>
@@ -707,8 +781,8 @@ if ($db_conn) {
 			OCICommit($db_conn);
     } else
     if(array_key_exists('delete_address', $_POST)) {
-      $postCode_delete = $_POST['deletedPostalCode_address'];
-      executePlainSQL("delete from address where Postal_Code='$postCode_delete'");
+      $deletedPostalCode_address = $_POST['deletedPostalCode_address'];
+      executePlainSQL("delete from address where Postal_Code='$deletedPostalCode_address'");
     	OCICommit($db_conn);
     } else
     if(array_key_exists('insert_location', $_POST)) {
@@ -744,6 +818,11 @@ if ($db_conn) {
 			executeBoundSQL("update location set LocationID=:bind2, Location_Name=:bind3, Opening_Time=:bind4, Closing_Time=:bind5, Phone_Number=:bind6, Postal_Code=:bind7 where locationID=:bind1", $alltuples);
 			OCICommit($db_conn);
     } else
+    if(array_key_exists('delete_location', $_POST)) {
+      $deletedLocationID_location = $_POST['deletedLocationID_location'];
+      executePlainSQL("delete from location where LocationID=$deletedLocationID_location");
+    	OCICommit($db_conn);
+    } else
     if(array_key_exists('insert_equipmenttype', $_POST)) {
       // Update identified row in Address table
 			$tuple = array (
@@ -768,6 +847,11 @@ if ($db_conn) {
 			);
 			executeBoundSQL("update equipmenttype set EquipmentID=:bind2, type=:bind3 where EquipmentID=:bind1", $alltuples);
 			OCICommit($db_conn);
+    } else
+    if(array_key_exists('delete_equipmenttype', $_POST)) {
+      $deletedEquipmentID_equipmentType = $_POST['deletedEquipmentID_equipmenttype'];
+      executePlainSQL("delete from equipmenttype where EquipmentID=$deletedEquipmentID_equipmentType");
+    	OCICommit($db_conn);
     } else
     if(array_key_exists('insert_equipment', $_POST)) {
       // Update identified row in Address table
@@ -797,6 +881,12 @@ if ($db_conn) {
 			executeBoundSQL("update equipment set EquipmentID=:bind3, LocationID=:bind4, quantity=:bind5 where EquipmentID=:bind1 and LocationID=:bind2", $alltuples);
 			OCICommit($db_conn);
     } else
+    if(array_key_exists('delete_equipment', $_POST)) {
+      $deletedEquipmentID_equipment = $_POST['deletedEquipmentID_equipment'];
+      $deletedLocationID_equipment = $_POST['deletedLocationID_equipment'];
+      executePlainSQL("delete from equipment where EquipmentID=$deletedEquipmentID_equipment and LocationID=$deletedLocationID_equipment");
+    	OCICommit($db_conn);
+    }else
     if(array_key_exists('insert_patron', $_POST)) {
       // Update identified row in Address table
 			$tuple = array (
@@ -922,6 +1012,11 @@ if ($db_conn) {
 			executeBoundSQL("update membership set MembershipID=:bind2, Start_Date=:bind3, Payment_Type=:bind4, Amount_Paid=:bind5, PatronID=:bind6 where MembershipID=:bind1", $alltuples);
 			OCICommit($db_conn);
     } else
+    if(array_key_exists('delete_membership', $_POST)) {
+      $deletedMembershipID_membership = $_POST['deletedMembershipID_membership'];
+      executePlainSQL("delete from membership where MembershipID=$deletedMembershipID_membership");
+    	OCICommit($db_conn);
+    } else
     if(array_key_exists('insert_dependents', $_POST)) {
       // Update identified row in Address table
 			$tuple = array (
@@ -936,6 +1031,12 @@ if ($db_conn) {
 			);
 			executeBoundSQL("insert into dependents values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
 			OCICommit($db_conn);
+    } else
+    if(array_key_exists('delete_dependents', $_POST)) {
+      $deletedName_dependents = $_POST['deletedName_dependents'];
+      $deletedPatronID_dependents = $_POST['deletedPatronID_dependents'];
+      executePlainSQL("delete from dependents where Name='$deletedName_dependents' and PatronID=$deletedPatronID_dependents");
+    	OCICommit($db_conn);
     } else
     if(array_key_exists('insert_locker', $_POST)) {
       // Update identified row in Address table
@@ -997,6 +1098,13 @@ if ($db_conn) {
 			);
 			executeBoundSQL("update PatronLeasesLocker set PatronID=:bind4, Locker_Num=:bind5, LocationID=:bind6, Lease_Start_Date=:bind7, Lease_End_Date=:bind8 where PatronID=:bind1 and Locker_Num=:bind2 and locationID=:bind3", $alltuples);
 			OCICommit($db_conn);
+    } else
+    if(array_key_exists('delete_patronleaseslocker', $_POST)) {
+      $deletedPatronID_patronleaseslocker = $_POST['deletedPatronID_patronleaseslocker'];
+      $deletedLockerNum_patronleaseslocker = $_POST['deletedLockerNum_patronleaseslocker'];
+      $deletedLocationID_patronleaseslocker = $_POST['deletedLocationID_patronleaseslocker'];
+      executePlainSQL("delete from patronleaseslocker where PatronID=$deletedPatronID_patronleaseslocker and Locker_Num=$deletedLockerNum_patronleaseslocker and LocationID=$deletedLocationID_patronleaseslocker");
+    	OCICommit($db_conn);
     }
 
 		OCICommit($db_conn);
@@ -1004,7 +1112,9 @@ if ($db_conn) {
 	if ($_POST && $success) {
 		//POST-REDIRECT-GET -- See http://en.wikipedia.org/wiki/Post/Redirect/Get
 		header("location: swimmingpool.php");
-	} 
+	} else {
+    echo "<br/> operation did not succeed";
+  }
 
   // Get Address Data
   $result_address = executePlainSQL("select * from Address");
