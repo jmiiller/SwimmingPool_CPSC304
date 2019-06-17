@@ -1,25 +1,25 @@
-Drop table address cascade constraints;
-Drop table location cascade constraints;
-Drop table equipmenttype cascade constraints;
-Drop table equipment cascade constraints;
-Drop table patron cascade constraints;
-Drop table visits cascade constraints;
-Drop table membershipexpiry cascade constraints;
-Drop table membership cascade constraints;
-Drop table dependents cascade constraints;
-Drop table locker cascade constraints;
-Drop table patronleaseslocker cascade constraints;
-Drop table staff cascade constraints;
-Drop table cleaningstaff cascade constraints;
-Drop table lifeguard cascade constraints;
-Drop table shift cascade constraints;
-Drop table staffworksshift cascade constraints;
-Drop table room cascade constraints;
-Drop table roomcapacity cascade constraints;
-Drop table roomcleaningstatus cascade constraints;
-Drop table cleaningstaffcleansroom cascade constraints;
-Drop table lockermaintenancestatus cascade constraints;
-Drop table cleaningstaffmaintainslocker cascade constraints;
+Drop table address cascade constraints purge;
+Drop table location cascade constraints purge;
+Drop table equipmenttype cascade constraints purge;
+Drop table equipment cascade constraints purge;
+Drop table patron cascade constraints purge;
+Drop table visits cascade constraints purge;
+Drop table membershipexpiry cascade constraints purge;
+Drop table membership cascade constraints purge;
+Drop table dependents cascade constraints purge;
+Drop table locker cascade constraints purge;
+Drop table patronleaseslocker cascade constraints purge;
+Drop table staff cascade constraints purge;
+Drop table cleaningstaff cascade constraints purge;
+Drop table lifeguard cascade constraints purge;
+Drop table shift cascade constraints purge;
+Drop table staffworksshift cascade constraints purge;
+Drop table room cascade constraints purge;
+Drop table roomcapacity cascade constraints purge;
+Drop table roomcleaningstatus cascade constraints purge;
+Drop table cleaningstaffcleansroom cascade constraints purge;
+Drop table lockermaintenancestatus cascade constraints purge;
+Drop table cleaningstaffmaintainslocker cascade constraints purge;
 
 CREATE TABLE Address(
 	Postal_Code CHAR(6),
@@ -289,3 +289,26 @@ VALUES('Tomas', 5, to_date('28/12/1966', 'DD/MM/YYYY'), 'M', 'Father');
 
 INSERT INTO Dependents
 VALUES('Pattson', 6, to_date('20/05/1983', 'DD/MM/YYYY'), 'M', 'Husband');
+
+grant select on Address to public;
+grant select on Location to public;
+grant select on EquipmentType to public;
+grant select on Equipment to public;
+grant select on Patron to public;
+grant select on Visits to public;
+grant select on Membership to public;
+grant select on MembershipExpiry to public;
+grant select on Dependents to public;
+grant select on Locker to public;
+grant select on PatronLeasesLocker to public;
+grant select on Staff to public;
+grant select on CleaningStaff to public;
+grant select on Lifeguard to public;
+grant select on Shift to public;
+grant select on StaffWorksShift to public;
+grant select on RoomCapacity to public;
+grant select on Room to public;
+grant select on RoomCleaningStatus to public;
+grant select on CleaningStaffCleansRoom to public;
+grant select on LockerMaintenanceStatus to public;
+grant select on CleaningStaffMaintainsLocker to public;
