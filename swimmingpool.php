@@ -376,30 +376,6 @@
    </p>
 </form>
 
-<p>Update Dependents</p>
-<p>
-  <font size="2">Old Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Old PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  New Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  New PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  New DOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  New Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  New Relationship To Patron</font>
-</p>
-<form method="POST" action="swimmingpool.php">
-<!-- refreshes page when submitted -->
-<p>
-  <input type="text" name="oldName_dependents" size="8">
-  <input type="text" name="oldPatronID_dependents"size="8">
-  <input type="text" name="updatedName_dependents" size="8">
-  <input type="text" name="updatedPatronID_dependents"size="8">
-  <input type="text" name="updatedDOB_dependents"size="10">
-  <input type="text" name="updatedSex_dependents"size="10">
-  <input type="text" name="updatedRelationshipToPatron_dependents"size="10">
-  <input type="submit" value="update dependents" name="update_dependents">
-</p>
-</form>
-
 <!-- Locker -->
 <p>Insert Locker</p>
 <p>
@@ -945,23 +921,6 @@ if ($db_conn) {
 			executeBoundSQL("insert into dependents values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
 			OCICommit($db_conn);
     } else
-    if(array_key_exists('update_dependents', $_POST)) {
-      // Update identified row in Address table
-			$tuple = array (
-        ":bind1" => $_POST['oldName_dependents'],
-        ":bind2" => $_POST['oldPatronID_dependents'],
-        ":bind3" => $_POST['updatedName_dependents'],
-        ":bind4" => $_POST['updatedPatronID_dependents'],
-        ":bind5" => $_POST['updatedDOB_dependents'],
-        ":bind6" => $_POST['updatedSex_dependents'],
-        ":bind7" => $_POST['updatedRelationshipToPatron_dependents']
-			);
-			$alltuples = array (
-				$tuple
-			);
-			executeBoundSQL("update dependents set Name=:bind3, PatronID=:bind4, DOB=:bind5, Sex=:bind6, Relationship_To_Patron=:bind7 where Name=:bind1 and PatronID=:bind2", $alltuples);
-			OCICommit($db_conn);
-    } else
     if(array_key_exists('insert_locker', $_POST)) {
       // Update identified row in Address table
 			$tuple = array (
@@ -1072,7 +1031,7 @@ if ($db_conn) {
   printTable($result_membership, $columnNames_membership, "Membership");
 
   // Get Dependents Data
-  $result_dependents = executePlainSQL("select * from dependents");
+  $result_dependents = executePlainSQL("select * from Dependents");
   $columnNames_dependents = array("Name", "PatronID", "DOB", "Sex", "Relationship To Patron");
   printTable($result_dependents, $columnNames_dependents, "Dependents");
 
