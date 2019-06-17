@@ -391,7 +391,6 @@
 </p>
 <form method="POST" action="swimmingpool.php">
 <!-- refreshes page when submitted -->
-
 <p>
   <input type="text" name="oldName_dependents" size="8">
   <input type="text" name="oldPatronID_dependents"size="8">
@@ -403,6 +402,91 @@
   <input type="submit" value="update dependents" name="update_dependents">
 </p>
 </form>
+
+<!-- Locker -->
+<p>Insert Locker</p>
+<p>
+  <font size="2"> Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Condition</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insLockerNum_locker" size="8">
+      <input type="text" name="insLocationID_locker" size="8">
+      <input type="text" name="insCondition_locker"size="8">
+      <input type="submit" value="insert locker" name="insert_locker">
+   </p>
+</form>
+
+<p>Update Locker</p>
+<p>
+  <font size="2">Old Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Old LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New Condition</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+<p>
+  <input type="text" name="oldLockerNum_locker" size="8">
+  <input type="text" name="oldLocationID_locker" size="8">
+  <input type="text" name="updatedLockerNum_locker" size="8">
+  <input type="text" name="updatedLocationID_locker" size="8">
+  <input type="text" name="updatedCondition_locker"size="8">
+  <input type="submit" value="update locker" name="update_locker">
+</p>
+</form>
+
+<!-- PatronLeasesLocker -->
+<p>Insert PatronLeasesLocker</p>
+<p>
+  <font size="2">PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Locker_Num&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Lease Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Lease End Date</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insPatronID_patronleaseslocker" size="8">
+      <input type="text" name="insLockerNum_patronleaseslocker" size="8">
+      <input type="text" name="insLocationID_patronleaseslocker"size="8">
+      <input type="text" name="insLeaseStartDate_patronleaseslocker"size="8">
+      <input type="text" name="insLeaseEndDate_patronleaseslocker"size="8">
+      <input type="submit" value="insert patronleaseslocker" name="insert_patronleaseslocker">
+   </p>
+</form>
+
+<p>Update PatronLeasesLocker</p>
+<p>
+  <font size="2">Old PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Old Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Old LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New Lease Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New Lease End Date</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+<p>
+  <input type="text" name="oldPatronID_patronleaseslocker" size="8">
+  <input type="text" name="oldLockerNum_patronleaseslocker" size="8">
+  <input type="text" name="oldLocationID_patronleaseslocker"size="8">
+  <input type="text" name="updatedPatronID_patronleaseslocker" size="8">
+  <input type="text" name="updatedLockerNum_patronleaseslocker" size="8">
+  <input type="text" name="updatedLocationID_patronleaseslocker"size="8">
+  <input type="text" name="updatedLeaseStartDate_patronleaseslocker"size="8">
+  <input type="text" name="updatedLeaseEndDate_patronleaseslocker"size="8">
+  <input type="submit" value="update PatronLeasesLocker" name="update_patronleaseslocker">
+</p>
+</form>
+
 <html>
 <style>
     table {
@@ -750,7 +834,7 @@ if ($db_conn) {
                                                      LocationID INTEGER, /* added locationID to make Oracle happy */
                                                      Lease_Start_Date DATE,
                                                      Lease_End_Date DATE,
-                                                     PRIMARY KEY (PatronID, Locker_Num),
+                                                     PRIMARY KEY (PatronID, Locker_Num, LocationID),
                                                      FOREIGN KEY (PatronID) REFERENCES Patron(PatronID),
                                                      FOREIGN KEY (Locker_Num, LocationID) REFERENCES Locker(Locker_Num, LocationID))");
     executePlainSQL("CREATE TABLE Staff(StaffID INTEGER,
@@ -1091,6 +1175,67 @@ if ($db_conn) {
 			);
 			executeBoundSQL("update dependents set Name=:bind3, PatronID=:bind4, DOB=:bind5, Sex=:bind6, Relationship_To_Patron=:bind7 where Name=:bind1 and PatronID=:bind2", $alltuples);
 			OCICommit($db_conn);
+    } else
+    if(array_key_exists('insert_locker', $_POST)) {
+      // Update identified row in Address table
+			$tuple = array (
+        ":bind1" => $_POST['insLockerNum_locker'],
+        ":bind2" => $_POST['insLocationID_locker'],
+        ":bind3" => $_POST['insCondition_locker']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into locker values (:bind1, :bind2, :bind3)", $alltuples);
+			OCICommit($db_conn);
+    } else
+    if(array_key_exists('update_locker', $_POST)) {
+      // Update identified row in Address table
+			$tuple = array (
+        ":bind1" => $_POST['oldLockerNum_locker'],
+        ":bind2" => $_POST['oldLocationID_locker'],
+        ":bind3" => $_POST['updatedLockerNum_locker'],
+        ":bind4" => $_POST['updatedLocationID_locker'],
+        ":bind5" => $_POST['updatedCondition_locker']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update locker set Locker_Num=:bind3, locationID=:bind4, Condition=:bind5 where Locker_Num=:bind1 and LocationID=:bind2", $alltuples);
+			OCICommit($db_conn);
+    } else
+    if(array_key_exists('insert_patronleaseslocker', $_POST)) {
+      // Update identified row in Address table
+			$tuple = array (
+        ":bind1" => $_POST['insPatronID_patronleaseslocker'],
+        ":bind2" => $_POST['insLockerNum_patronleaseslocker'],
+        ":bind3" => $_POST['insLocationID_patronleaseslocker'],
+        ":bind4" => $_POST['insLeaseStartDate_patronleaseslocker'],
+        ":bind5" => $_POST['insLeaseEndDate_patronleaseslocker']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into PatronLeasesLocker values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
+			OCICommit($db_conn);
+    } else
+    if(array_key_exists('update_patronleaseslocker', $_POST)) {
+      // Update identified row in Address table
+			$tuple = array (
+        ":bind1" => $_POST['oldPatronID_patronleaseslocker'],
+        ":bind2" => $_POST['oldLockerNum_patronleaseslocker'],
+        ":bind3" => $_POST['oldLocationID_patronleaseslocker'],
+        ":bind4" => $_POST['updatedPatronID_patronleaseslocker'],
+        ":bind5" => $_POST['updatedLockerNum_patronleaseslocker'],
+        ":bind6" => $_POST['updatedLocationID_patronleaseslocker'],
+        ":bind7" => $_POST['updatedLeaseStartDate_patronleaseslocker'],
+        ":bind8" => $_POST['updatedLeaseEndDate_patronleaseslocker']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update PatronLeasesLocker set PatronID=:bind4, Locker_Num=:bind5, LocationID=:bind6, Lease_Start_Date=:bind7, Lease_End_Date=:bind8 where PatronID=:bind1 and Locker_Num=:bind2 and locationID=:bind3", $alltuples);
+			OCICommit($db_conn);
     }else
 				if (array_key_exists('dostuff', $_POST)) {
 					// Insert data into table...
@@ -1163,10 +1308,20 @@ if ($db_conn) {
   $columnNames_membership = array("MembershipID", "Start Date", "Payment Type", "Amount Type", "PatronID");
   printTable($result_membership, $columnNames_membership, "Membership");
 
-  // Get Membership Data
+  // Get Dependents Data
   $result_dependents = executePlainSQL("select * from dependents");
   $columnNames_dependents = array("Name", "PatronID", "DOB", "Sex", "Relationship To Patron");
   printTable($result_dependents, $columnNames_dependents, "Dependents");
+
+  // Get Locker Data
+  $result_locker = executePlainSQL("select * from locker");
+  $columnNames_locker = array("Locker Number", "LocationID", "Condition");
+  printTable($result_locker, $columnNames_locker, "Locker");
+
+  // Get PatronLeasesLocker Data
+  $result_patronleaseslocker = executePlainSQL("select * from patronleaseslocker");
+  $columnNames_patronleaseslocker = array("PatronID", "Locker Number", "LocationID", "Lease Start Date", "Lease End Date");
+  printTable($result_patronleaseslocker, $columnNames_patronleaseslocker, "PatronLeasesLocker");
 
 	//Commit to save changes...
 	OCILogoff($db_conn);
