@@ -44,7 +44,7 @@
    <p>
       <input type="text" name="insPostalCode_address" size="6">
       <input type="text" name="insStreet_address"size="20">
-      <input type="text" name="insPhoneNum_address" size="20">
+      <input type="text" name="inCity_address" size="20">
       <input type="text" name="insProvince_address" size="2">
       <input type="submit" value="insert address" name="insert_address">
    </p>
@@ -63,7 +63,7 @@
       <input type="text" name="oldPostalCode_address" size="6">
       <input type="text" name="updatedPostalCode_address" size="6">
       <input type="text" name="updatedStreet_address"size="20">
-      <input type="text" name="updatedPhoneNum_address" size="20">
+      <input type="text" name="updatedCity_address" size="20">
       <input type="text" name="updatedProvince_address" size="2">
       <input type="submit" value="update address" name="update_address">
    </p>
@@ -827,7 +827,7 @@ if ($db_conn) {
 			$tuple = array (
 				":bind1" => $_POST['insPostalCode_address'],
 				":bind2" => $_POST['insStreet_address'],
-        ":bind3" => $_POST['insPhoneNum_address'],
+        ":bind3" => $_POST['insCity_address'],
         ":bind4" => $_POST['insProvince_address']
 			);
 			$alltuples = array (
@@ -843,7 +843,7 @@ if ($db_conn) {
 				":bind1" => $_POST['oldPostalCode_address'],
         ":bind2" => $_POST['updatedPostalCode_address'],
         ":bind3" => $_POST['updatedStreet_address'],
-        ":bind4" => $_POST['updatedPhoneNum_address'],
+        ":bind4" => $_POST['updatedCity_address'],
         ":bind5" => $_POST['updatedProvince_address']
 			);
 			$alltuples = array (
