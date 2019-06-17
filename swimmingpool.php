@@ -60,6 +60,17 @@
    </p>
 </form>
 
+<p> Delete Address </p>
+<p><font size="2">Postal Code</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedPostalCode_address" size="6">
+      <input type="submit" value="delete address" name="delete_address">
+   </p>
+</form>
+
 
 <!-- Location -->
 <p>Insert Location</p>
@@ -695,6 +706,11 @@ if ($db_conn) {
 			executeBoundSQL("update address set Postal_Code=:bind2, Street=:bind3, City=:bind4, Province=:bind5 where Postal_Code=:bind1", $alltuples);
 			OCICommit($db_conn);
     } else
+    if(array_key_exists('delete_address', $_POST)) {
+      $postCode_delete = $_POST['deletedPostalCode_address'];
+      executePlainSQL("delete from address where Postal_Code='$postCode_delete'");
+    	OCICommit($db_conn);
+    } else
     if(array_key_exists('insert_location', $_POST)) {
       // Update identified row in Address table
 			$tuple = array (
@@ -988,7 +1004,7 @@ if ($db_conn) {
 	if ($_POST && $success) {
 		//POST-REDIRECT-GET -- See http://en.wikipedia.org/wiki/Post/Redirect/Get
 		header("location: swimmingpool.php");
-	}
+	} 
 
   // Get Address Data
   $result_address = executePlainSQL("select * from Address");
