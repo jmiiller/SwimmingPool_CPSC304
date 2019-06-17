@@ -26,11 +26,6 @@
    If this is the first time that you're running this page,
    you MUST use reset.</p>
 
-<form method="POST" action="swimmingpool.php">
-   <p><input type="submit" value="Reset" name="reset"></p>
-</form>
-
-
 <!-- Address -->
 <p>Insert Address</p>
 <p>
@@ -279,13 +274,15 @@
 <!-- MembershipExpiry -->
 <p>Insert MembershipExpiry</p>
 <p>
-  <font size="2"> Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font size="2">PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Amount Paid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   End Date</font>
 </p>
 <form method="POST" action="swimmingpool.php">
 <!-- refreshes page when submitted -->
    <p>
+      <input type="text" name="insPatronID_membershipexpiry" size="8">
       <input type="text" name="insStartDate_membershipexpiry" size="8">
       <input type="text" name="insAmountPaid_membershipexpiry"size="8">
       <input type="text" name="insEndDate_membershipexpiry"size="10">
@@ -295,8 +292,10 @@
 
 <p>Update MembershipExpiry</p>
 <p>
-  <font size="2">Old Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <font size="2">Old PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Old Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Old Amount Paid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  New PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   New Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   New Amount Paid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   New End Date</font>
@@ -305,8 +304,10 @@
 <!-- refreshes page when submitted -->
 
 <p>
+  <input type="text" name="oldPatronID_membershipexpiry" size="8">
   <input type="text" name="oldStartDate_membershipexpiry" size="8">
   <input type="text" name="oldAmountPaid_membershipexpiry"size="8">
+  <input type="text" name="updatedPatronID_membershipexpiry" size="8">
   <input type="text" name="updatedStartDate_membershipexpiry" size="8">
   <input type="text" name="updatedAmountPaid_membershipexpiry"size="8">
   <input type="text" name="updatedEndDate_membershipexpiry"size="10">
@@ -326,7 +327,7 @@
 <form method="POST" action="swimmingpool.php">
 <!-- refreshes page when submitted -->
    <p>
-     <input type="text" name="insMembershipID_membership" size="8">
+      <input type="text" name="insMembershipID_membership" size="8">
       <input type="text" name="insStartDate_membership" size="8">
       <input type="text" name="insPaymentType_membership"size="8">
       <input type="text" name="insAmountPaid_membership"size="8">
@@ -694,7 +695,7 @@ function printTable($resultFromSQL, $namesOfColumnsArray, $tablename)
 
 // Connect Oracle...
 if ($db_conn) {
-
+/*
 	if (array_key_exists('reset', $_POST)) {
 		// Drop old table...
 		echo "<br> Dropping Old Tables <br>";
@@ -721,51 +722,19 @@ if ($db_conn) {
     executePlainSQL("Drop table cleaningstaffcleansroom cascade constraints purge");
     executePlainSQL("Drop table lockermaintenancestatus cascade constraints purge");
     executePlainSQL("Drop table cleaningstaffmaintainslocker cascade constraints purge");
-/*
-    $tuple = array (
-      0 => "address",
-      1 => "location",
-      2 => "EquipmentType",
-      3 => "equipment",
-      4 => "Patron",
-      5 => "visits",
-      6 => "membershipexpiry",
-      7 => "Membership",
-      8 => "Dependents",
-      9 => "Locker",
-      10 => "patronleaseslocker",
-      11 => "staff",
-      12 => "cleaningstaff",
-      13 => "lifeguard",
-      14 => "shift",
-      15 => "StaffWorksShift",
-      16 => "room",
-      17 => "RoomCapacity",
-      18 => "RoomCleaningStatus",
-      19 => "CleaningStaffCleansRoom",
-      20 => "LockerMaintenanceStatus",
-      21 => "CleaningStaffMaintainsLocker",
-    );
-    $alltuples = array (
-      $tuple
-    );
-    for (int i = 0; i < sizeof($tuple); i++) {
-      executeBoundSQL("drop table cascade constraints", $alltuples);
-    }
-*/
 
 		// Create new table...
 		echo "<br> Creating New Tables <br>";
 		executePlainSQL("CREATE TABLE Address(Postal_Code CHAR(6),
                                           Street CHAR(50), /* changed char size to 50 */
-                                          City CHAR(20),
+  /*                                        City CHAR(20),
                                           Province CHAR(2),
                                           PRIMARY KEY (Postal_Code))");
     executePlainSQL("CREATE TABLE Location(LocationID INTEGER,
                                            Location_Name CHAR(30),
                                            Opening_Time INTEGER, /* changed from TIME to INTEGER */
-                                           Closing_Time INTEGER, /* changed from TIME to INTEGER */
-                                           Phone_Number CHAR(10),
+    /*                                       Closing_Time INTEGER, /* changed from TIME to INTEGER */
+    /*                                       Phone_Number CHAR(10),
                                            Postal_Code CHAR(6) NOT NULL,
                                            PRIMARY KEY (LocationID),
                                            UNIQUE (Phone_Number),
@@ -796,7 +765,7 @@ if ($db_conn) {
    executePlainSQL("CREATE TABLE Visits(LocationID INTEGER,
                                          PatronID INTEGER,
                                          visitdate DATE, /* changed name from date to visitdate and removed Time field */
-                                         PRIMARY KEY (LocationID, PatronID),
+    /*                                     PRIMARY KEY (LocationID, PatronID),
                                          FOREIGN KEY (LocationID) REFERENCES Location(LocationID),
                                          FOREIGN KEY (PatronID) REFERENCES Patron(PatronID))");
 
@@ -832,7 +801,7 @@ if ($db_conn) {
     executePlainSQL("CREATE TABLE PatronLeasesLocker(PatronID INTEGER,
                                                      Locker_Num INTEGER,
                                                      LocationID INTEGER, /* added locationID to make Oracle happy */
-                                                     Lease_Start_Date DATE,
+        /*                                             Lease_Start_Date DATE,
                                                      Lease_End_Date DATE,
                                                      PRIMARY KEY (PatronID, Locker_Num, LocationID),
                                                      FOREIGN KEY (PatronID) REFERENCES Patron(PatronID),
@@ -858,13 +827,13 @@ if ($db_conn) {
                                             FOREIGN KEY (SupervisorID) REFERENCES Lifeguard(StaffID))");
     executePlainSQL("CREATE TABLE Shift(shiftdate DATE,
                                         Start_Time INTEGER, /* changed field type for both to INTEGER */
-                                        End_Time INTEGER,
+    /*                                    End_Time INTEGER,
                                         PRIMARY KEY (shiftdate, Start_Time, End_Time))");
     executePlainSQL("CREATE TABLE StaffWorksShift(StaffID INTEGER,
                                                   shiftdate DATE,
                                                   Start_Time INTEGER,
                                                   End_Time INTEGER, /* changed field type for start and end time to integer from time */
-                                                  PRIMARY KEY (StaffID, shiftdate, Start_Time, End_Time),
+      /*                                            PRIMARY KEY (StaffID, shiftdate, Start_Time, End_Time),
                                                   FOREIGN KEY (StaffID) REFERENCES Staff(StaffID),
                                                   FOREIGN KEY (shiftdate, Start_Time, End_Time) REFERENCES Shift(shiftdate, Start_Time, End_Time))");
     executePlainSQL("CREATE TABLE RoomCapacity(Room_Type CHAR (20),
@@ -873,7 +842,7 @@ if ($db_conn) {
     executePlainSQL("CREATE TABLE Room(Room_Num INTEGER,
                                        LocationID INTEGER,
                                        Room_Type CHAR(20), /* Room_Type made a foreign key of roomcapacity table */
-                                       Condition CHAR(10),
+          /*                             Condition CHAR(10),
                                        PRIMARY KEY (Room_Num, LocationID),
                                        FOREIGN KEY (LocationID) REFERENCES Location(LocationID) ON DELETE CASCADE,
                                        FOREIGN KEY (Room_Type) REFERENCES RoomCapacity(Room_Type))");
@@ -905,7 +874,8 @@ if ($db_conn) {
 
     OCICommit($db_conn);
 
-	} else
+	} else */
+
 		if (array_key_exists('insert_address', $_POST)) {
 			// Insert into Address table
 			$tuple = array (
@@ -1088,29 +1058,32 @@ if ($db_conn) {
     if(array_key_exists('insert_membershipexpiry', $_POST)) {
       // Update identified row in Address table
 			$tuple = array (
-        ":bind1" => $_POST['insStartDate_membershipexpiry'],
-        ":bind2" => $_POST['insAmountPaid_membershipexpiry'],
-        ":bind3" => $_POST['insEndDate_membershipexpiry']
+        ":bind1" => $_POST['insPatronID_membershipexpiry'],
+        ":bind2" => $_POST['insStartDate_membershipexpiry'],
+        ":bind3" => $_POST['insAmountPaid_membershipexpiry'],
+        ":bind4" => $_POST['insEndDate_membershipexpiry']
 			);
 			$alltuples = array (
 				$tuple
 			);
-			executeBoundSQL("insert into MembershipExpiry values (:bind1, :bind2, :bind3)", $alltuples);
+			executeBoundSQL("insert into MembershipExpiry values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
 			OCICommit($db_conn);
     } else
     if(array_key_exists('update_membershipexpiry', $_POST)) {
       // Update identified row in Address table
 			$tuple = array (
-        ":bind1" => $_POST['oldStartDate_membershipexpiry'],
-        ":bind2" => $_POST['oldAmountPaid_membershipexpiry'],
-        ":bind3" => $_POST['updatedStartDate_membershipexpiry'],
-        ":bind4" => $_POST['updatedAmountPaid_membershipexpiry'],
-        ":bind5" => $_POST['updatedEndDate_membershipexpiry']
+        ":bind1" => $_POST['oldPatronID_membershipexpiry'],
+        ":bind2" => $_POST['oldStartDate_membershipexpiry'],
+        ":bind3" => $_POST['oldAmountPaid_membershipexpiry'],
+        ":bind4" => $_POST['updatedPatronID_membershipexpiry'],
+        ":bind5" => $_POST['updatedStartDate_membershipexpiry'],
+        ":bind6" => $_POST['updatedAmountPaid_membershipexpiry'],
+        ":bind7" => $_POST['updatedEndDate_membershipexpiry']
 			);
 			$alltuples = array (
 				$tuple
 			);
-			executeBoundSQL("update membershipexpiry set Start_Date=:bind3, Amount_Paid=:bind4, End_Date=:bind5 where Start_Date=:bind1 and Amount_Paid=:bind2", $alltuples);
+			executeBoundSQL("update membershipexpiry set PatronID=:bind4, Start_Date=:bind5, Amount_Paid=:bind6, End_Date=:bind7 where PatronID=:bind1 and Start_Date=:bind2 and Amount_Paid=:bind3", $alltuples);
 			OCICommit($db_conn);
     } else
     if(array_key_exists('insert_membership', $_POST)) {
@@ -1236,31 +1209,8 @@ if ($db_conn) {
 			);
 			executeBoundSQL("update PatronLeasesLocker set PatronID=:bind4, Locker_Num=:bind5, LocationID=:bind6, Lease_Start_Date=:bind7, Lease_End_Date=:bind8 where PatronID=:bind1 and Locker_Num=:bind2 and locationID=:bind3", $alltuples);
 			OCICommit($db_conn);
-    }else
-				if (array_key_exists('dostuff', $_POST)) {
-					// Insert data into table...
-					executePlainSQL("insert into tab1 values (10, 'Frank', '4059938833')");
-					// Insert data into table using bound variables
-					$list1 = array (
-						":bind1" => 6,
-						":bind2" => 'All',
-            ":bind3" => '123456789'
-					);
-					$list2 = array (
-						":bind1" => 7,
-						":bind2" => 'John',
-            ":bind3" => '4031234567'
-					);
-					$allrows = array (
-						$list1,
-						$list2
-					);
-					executeBoundSQL("insert into tab1 values (:bind1, :bind2, :bind3)", $allrows); //the function takes a list of lists
-        }
-  	// Update data...
-		//executePlainSQL("update tab1 set nid=10 where nid=2");
-		// Delete data...
-		//executePlainSQL("delete from tab1 where nid=1");
+    }
+
 		OCICommit($db_conn);
 
 	if ($_POST && $success) {
@@ -1300,7 +1250,7 @@ if ($db_conn) {
 
   // Get MembershipExpiry Data
   $result_membershipexpiry = executePlainSQL("select * from membershipexpiry");
-  $columnNames_membershipexpiry = array("Start Date", "Amount Paid", "End Date");
+  $columnNames_membershipexpiry = array("PatronID", "Start Date", "Amount Paid", "End Date");
   printTable($result_membershipexpiry, $columnNames_membershipexpiry, "MembershipExpiry");
 
   // Get Membership Data
