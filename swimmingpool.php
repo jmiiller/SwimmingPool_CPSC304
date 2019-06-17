@@ -22,10 +22,6 @@
   this script.
  -->
 
-<p>If you wish to reset the table, press the reset button.
-   If this is the first time that you're running this page,
-   you MUST use reset.</p>
-
 <!-- Address -->
 <p>Insert Address</p>
 <p>
