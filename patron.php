@@ -477,12 +477,18 @@ if ($db_conn) {
 		$alltuples = array (
 			$tuple
 		);
+		$id = $_POST['insPatronID_dependents'];
+		executePlainSQL("update Patron set Num_Dependents = Num_Dependents + 1 where PatronID=$id");
 		executeBoundSQL("insert into dependents values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
 		OCICommit($db_conn);
 		} else if(array_key_exists('delete_dependents', $_POST)) {
 			$deletedName_dependents = $_POST['deletedName_dependents'];
 			$deletedPatronID_dependents = $_POST['deletedPatronID_dependents'];
-			executePlainSQL("delete from dependents where Name='$deletedName_dependents' and PatronID=$deletedPatronID_dependents");
+			
+			if (executePlainSQL("select Num_Dependents from Patron where PatronID=$deletedPatronID_dependents") > 1) {
+				executePlainSQL("update Patron set Num_Dependents = Num_Dependents - 1 where PatronID=$deletedPatronID_dependents");
+				executePlainSQL("delete from dependents where Name='$deletedName_dependents' and PatronID=$deletedPatronID_dependents");
+			}
 			OCICommit($db_conn);
 		} else if(array_key_exists('insert_membership', $_POST)) {
 		  // Update identified row in Address table
