@@ -1,0 +1,2 @@
+~~ Someone will need to list every SQL query (and I believe this includes
+select, update, and delete statements) that we used in our project. ~~

@@ -1,5 +1,5 @@
 Project Description:
-
+~~ Someone will need to provide a brief project description. ~~
 
 
 Schema Changes:
