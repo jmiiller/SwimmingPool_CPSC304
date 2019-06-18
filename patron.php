@@ -106,7 +106,7 @@
 <p>Lease Locker</p>
 <p>
   <font size="2">PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Lease Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Lease End Date</font>
@@ -126,8 +126,8 @@
 <p>Update Lease</p>
 <p>
   <font size="2">PatronID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Locker Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Locker Number&nbsp;&nbsp;&nbsp;&nbsp;
+  LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   New Lease Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   New Lease End Date</font>
 </p>

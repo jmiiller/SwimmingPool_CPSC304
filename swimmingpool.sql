@@ -31,8 +31,8 @@ CREATE TABLE Address(
 CREATE TABLE Location(
 	LocationID INTEGER,
 	Location_Name CHAR(30),
-	Opening_Time INTEGER, /* changed from TIME to INTEGER */
-	Closing_Time INTEGER, /* changed from TIME to INTEGER */
+	Opening_Time SMALLINT, /* changed from TIME to INTEGER */
+	Closing_Time SMALLINT, /* changed from TIME to INTEGER */
 	Phone_Number CHAR(10),
 	Postal_Code CHAR(6) NOT NULL,
 	PRIMARY KEY (LocationID),
@@ -143,23 +143,23 @@ CREATE TABLE Lifeguard(
 
 CREATE TABLE Shift(
 	shiftdate DATE,
-	Start_Time INTEGER, /* changed field type for both to INTEGER */
-	End_Time INTEGER,
+	Start_Time SMALLINT, /* changed field type for both to INTEGER */
+	End_Time SMALLINT,
 	PRIMARY KEY (shiftdate, Start_Time, End_Time));
 
 CREATE TABLE StaffWorksShift(
 	StaffID INTEGER,
 	shiftdate DATE,
-	Start_Time INTEGER,
-	End_Time INTEGER, /* changed field type for start and end time to integer from time */
+	Start_Time SMALLINT,
+	End_Time SMALLINT, /* changed field type for start and end time to integer from time */
 	PRIMARY KEY (StaffID, shiftdate, Start_Time, End_Time),
 	FOREIGN KEY (StaffID) REFERENCES Staff(StaffID),
 	FOREIGN KEY (shiftdate, Start_Time, End_Time) REFERENCES Shift(shiftdate, Start_Time, End_Time));
 
 CREATE TABLE RoomCapacity(
 	Room_Type CHAR (20),
-   Capacity INTEGER,
-   PRIMARY KEY (Room_Type));
+	Capacity INTEGER,
+	PRIMARY KEY (Room_Type));
 
 CREATE TABLE Room(
 	Room_Num INTEGER,
@@ -231,6 +231,93 @@ VALUES(4, 'Downtown1', 1100, 1900, '6136900100', 'K2H5Y9');
 
 INSERT INTO Location
 VALUES(5, 'Downtown2', 1130, 2200, '4165951975', 'M5G1Z4');
+
+INSERT INTO EquipmentType
+VALUES(1, 'Surf Boards');
+
+INSERT INTO EquipmentType
+VALUES(2, 'Beach Chair');
+
+INSERT INTO EquipmentType
+VALUES(3, 'Table');
+
+INSERT INTO EquipmentType
+VALUES(4, 'Bath Towel');
+
+INSERT INTO EquipmentType
+VALUES(5, 'Lifebuoy');
+
+INSERT INTO Equipment
+VALUES(1, 1, 10);
+
+INSERT INTO Equipment
+VALUES(1, 2, 10);
+
+INSERT INTO Equipment
+VALUES(1, 3, 10);
+
+INSERT INTO Equipment
+VALUES(1, 4, 10);
+
+INSERT INTO Equipment
+VALUES(1, 5, 10);
+
+INSERT INTO Equipment
+VALUES(2, 1, 16);
+
+INSERT INTO Equipment
+VALUES(2, 2, 16);
+
+INSERT INTO Equipment
+VALUES(2, 3, 16);
+
+INSERT INTO Equipment
+VALUES(2, 4, 16);
+
+INSERT INTO Equipment
+VALUES(2, 5, 16);
+
+INSERT INTO Equipment
+VALUES(3, 1, 8);
+
+INSERT INTO Equipment
+VALUES(3, 2, 10);
+
+INSERT INTO Equipment
+VALUES(3, 3, 5);
+
+INSERT INTO Equipment
+VALUES(3, 5, 10);
+
+INSERT INTO Equipment
+VALUES(4, 1, 6);
+
+INSERT INTO Equipment
+VALUES(4, 2, 12);
+
+INSERT INTO Equipment
+VALUES(4, 3, 12);
+
+INSERT INTO Equipment
+VALUES(4, 4, 12);
+
+INSERT INTO Equipment
+VALUES(4, 5, 8);
+
+INSERT INTO Equipment
+VALUES(5, 1, 22);
+
+INSERT INTO Equipment
+VALUES(5, 2, 18);
+
+INSERT INTO Equipment
+VALUES(5, 3, 16);
+
+INSERT INTO Equipment
+VALUES(5, 4, 20);
+
+INSERT INTO Equipment
+VALUES(5, 5, 8);
 
 INSERT INTO Patron
 VALUES(1, 'Chris', to_date('23/05/1987', 'DD/MM/YYYY'), 'M', '7786826666', 'V6T1K2', 1);
@@ -375,6 +462,288 @@ VALUES(4, 4, 2, to_date('01/05/2019', 'DD/MM/YYYY'), to_date('01/05/2020', 'DD/M
 
 INSERT INTO PatronLeasesLocker
 VALUES(5, 4, 5, to_date('25/05/2019', 'DD/MM/YYYY'), to_date('25/05/2020', 'DD/MM/YYYY'));
+
+INSERT INTO Staff
+VALUES(1001, 'Alex', to_date('01/01/1978', 'DD/MM/YYYY'), 'M', 25, 125, 8, 1);
+
+INSERT INTO Staff
+VALUES(1002, 'Adam', to_date('01/01/1988', 'DD/MM/YYYY'), 'M', 25, 125, 8, 1);
+
+INSERT INTO Staff
+VALUES(2001, 'Brandon', to_date('01/01/1979', 'DD/MM/YYYY'), 'M', 35, 200, 7, 2);
+
+INSERT INTO Staff
+VALUES(2002, 'Brian', to_date('01/01/1989', 'DD/MM/YYYY'), 'M', 35, 200, 7, 2);
+
+INSERT INTO Staff
+VALUES(3001, 'Chloe', to_date('01/01/1980', 'DD/MM/YYYY'), 'F', 38, 220, 8, 3);
+
+INSERT INTO Staff
+VALUES(3002, 'Charles', to_date('01/01/1990', 'DD/MM/YYYY'), 'M', 35, 200, 7, 3);
+
+INSERT INTO Staff
+VALUES(4001, 'David', to_date('01/01/1988', 'DD/MM/YYYY'), 'M', 27, 180, 8, 4);
+
+INSERT INTO Staff
+VALUES(4002, 'Peter', to_date('01/01/1993', 'DD/MM/YYYY'), 'M', 35, 200, 7, 4);
+
+INSERT INTO Staff
+VALUES(5001, 'Ellen', to_date('01/01/1991', 'DD/MM/YYYY'), 'F', 20, 90, 8, 5);
+
+INSERT INTO Staff
+VALUES(5002, 'Joyce', to_date('01/01/1995', 'DD/MM/YYYY'), 'F', 35, 200, 7, 5);
+
+INSERT INTO CleaningStaff
+VALUES(1002);
+
+INSERT INTO CleaningStaff
+VALUES(2002);
+
+INSERT INTO CleaningStaff
+VALUES(3002);
+
+INSERT INTO CleaningStaff
+VALUES(4002);
+
+INSERT INTO CleaningStaff
+VALUES(5002);
+
+INSERT INTO Lifeguard
+VALUES(1001, to_date('01/01/2025', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO Lifeguard
+VALUES(2001, to_date('01/01/2025', 'DD/MM/YYYY'), 1001);
+
+INSERT INTO Lifeguard
+VALUES(3001, to_date('01/01/2025', 'DD/MM/YYYY'), 1001);
+
+INSERT INTO Lifeguard
+VALUES(4001, to_date('01/01/2025', 'DD/MM/YYYY'), 1001);
+
+INSERT INTO Lifeguard
+VALUES(5001, to_date('01/01/2025', 'DD/MM/YYYY'), 1001);
+
+INSERT INTO Shift
+VALUES(to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO Shift
+VALUES(to_date('24/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO Shift
+VALUES(to_date('25/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO Shift
+VALUES(to_date('26/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO Shift
+VALUES(to_date('27/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(1001, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(1002, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(2001, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(2002, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(3001, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(3002, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(4001, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(4002, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(5001, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO StaffWorksShift
+VALUES(5002, to_date('23/05/2019', 'DD/MM/YYYY'), 900, 2100);
+
+INSERT INTO RoomCapacity
+VALUES('Large Swimming Pool', 500);
+
+INSERT INTO RoomCapacity
+VALUES('Small Bathroom', 4);
+
+INSERT INTO RoomCapacity
+VALUES('Medium Changing Room', 100);
+
+INSERT INTO RoomCapacity
+VALUES('Large Gym', 200);
+
+INSERT INTO RoomCapacity
+VALUES('Medium Gym', 125);
+
+INSERT INTO Room
+VALUES(1, 1, 'Large Swimming Pool', 'Fair');
+
+INSERT INTO Room
+VALUES(1, 2, 'Small Bathroom', 'Good');
+
+INSERT INTO Room
+VALUES(1, 3, 'Medium Changing Room', 'Poor');
+
+INSERT INTO Room
+VALUES(1, 4, 'Large Gym', 'Good');
+
+INSERT INTO Room
+VALUES(1, 5, 'Medium Gym', 'Poor');
+
+INSERT INTO Room
+VALUES(2, 5, 'Large Swimming Pool', 'Fair');
+
+INSERT INTO RoomCleaningStatus
+VALUES(1, 1, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO RoomCleaningStatus
+VALUES(1, 2, to_date('23/05/2019', 'DD/MM/YYYY'), 'Need tables and chairs on 05/27/2019');
+
+INSERT INTO RoomCleaningStatus
+VALUES(1, 3, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO RoomCleaningStatus
+VALUES(1, 4, to_date('23/05/2019', 'DD/MM/YYYY'), 'Closed on 05/25/2019');
+
+INSERT INTO RoomCleaningStatus
+VALUES(1, 5, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO CleaningStaffCleansRoom
+VALUES(1002, 1, 1);
+
+INSERT INTO CleaningStaffCleansRoom
+VALUES(2002, 1, 2);
+
+INSERT INTO CleaningStaffCleansRoom
+VALUES(3002, 1, 3);
+
+INSERT INTO CleaningStaffCleansRoom
+VALUES(4002, 1, 4);
+
+INSERT INTO CleaningStaffCleansRoom
+VALUES(5002, 1, 5);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(1,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(2,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(3,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(4,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(5,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(1,2, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(2,2, to_date('20/05/2019', 'DD/MM/YYYY'), 'Repair scheduled 25/05/2019');
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(3,2, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(4,2, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(1,3, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(2,3, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(3,3, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(1,4, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(2,4, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(3,4, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(1,5, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(2,5, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(3,5, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+
+INSERT INTO LockerMaintenanceStatus
+VALUES(4,5, to_date('20/05/2019', 'DD/MM/YYYY'), 'Repair scheduled 27/05/2019');
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(1002,1,1);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(1002,2,1);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(1002,3,1);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(1002,4,1);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(1002,5,1);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(2002,1,2);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(2002,2,2);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(2002,3,2);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(2002,4,2);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(3002,1,3);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(3002,2,3);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(3002,3,3);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(4002,1,4);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(4002,2,4);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(4002,3,4);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(5002,1,5);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(5002,2,5);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(5002,3,5);
+
+INSERT INTO CleaningStaffMaintainsLocker
+VALUES(5002,4,5);
 
 grant select on Address to public;
 grant select on Location to public;
