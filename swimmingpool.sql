@@ -31,8 +31,8 @@ CREATE TABLE Address(
 CREATE TABLE Location(
 	LocationID INTEGER,
 	Location_Name CHAR(30),
-	Opening_Time SMALLINT, /* changed from TIME to INTEGER */
-	Closing_Time SMALLINT, /* changed from TIME to INTEGER */
+	Opening_Time SMALLINT,
+	Closing_Time SMALLINT,
 	Phone_Number CHAR(10),
 	Postal_Code CHAR(6) NOT NULL,
 	PRIMARY KEY (LocationID),
@@ -67,7 +67,7 @@ CREATE TABLE Patron(
 CREATE TABLE Visits(
 	LocationID INTEGER,
 	PatronID INTEGER,
-	visitdate DATE, /* changed name from date to visitdate and removed Time field */
+	visitdate DATE,
 	PRIMARY KEY (LocationID, PatronID),
 	FOREIGN KEY (LocationID) REFERENCES Location(LocationID),
 	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID));
@@ -109,7 +109,7 @@ CREATE TABLE Locker(
 CREATE TABLE PatronLeasesLocker(
 	PatronID INTEGER,
 	Locker_Num INTEGER,
-	LocationID INTEGER, /* added locationID to make Oracle happy */
+	LocationID INTEGER,
 	Lease_Start_Date DATE,
 	Lease_End_Date DATE,
 	PRIMARY KEY (PatronID, Locker_Num, LocationID),
@@ -143,7 +143,7 @@ CREATE TABLE Lifeguard(
 
 CREATE TABLE Shift(
 	shiftdate DATE,
-	Start_Time SMALLINT, /* changed field type for both to INTEGER */
+	Start_Time SMALLINT,
 	End_Time SMALLINT,
 	PRIMARY KEY (shiftdate, Start_Time, End_Time));
 
@@ -151,7 +151,7 @@ CREATE TABLE StaffWorksShift(
 	StaffID INTEGER,
 	shiftdate DATE,
 	Start_Time SMALLINT,
-	End_Time SMALLINT, /* changed field type for start and end time to integer from time */
+	End_Time SMALLINT,
 	PRIMARY KEY (StaffID, shiftdate, Start_Time, End_Time),
 	FOREIGN KEY (StaffID) REFERENCES Staff(StaffID),
 	FOREIGN KEY (shiftdate, Start_Time, End_Time) REFERENCES Shift(shiftdate, Start_Time, End_Time));
@@ -164,7 +164,7 @@ CREATE TABLE RoomCapacity(
 CREATE TABLE Room(
 	Room_Num INTEGER,
 	LocationID INTEGER,
-	Room_Type CHAR(20), /* Room_Type made a foreign key of roomcapacity table */
+	Room_Type CHAR(20),
 	Condition CHAR(10),
 	PRIMARY KEY (Room_Num, LocationID),
 	FOREIGN KEY (LocationID) REFERENCES Location(LocationID) ON DELETE CASCADE,
