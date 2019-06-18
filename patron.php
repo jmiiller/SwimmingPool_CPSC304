@@ -24,6 +24,8 @@
 
 <button onclick="window.location.href = 'home.php';">Home</button>
 
+<br>
+<u>Find your info</u>
 <p>Enter PatronID:</p>
 <form method="POST" action="patron.php">
 <!-- refreshes page when submitted -->
@@ -34,6 +36,23 @@
 <input type="submit" value="Reset" name="selectAll"></p>
 </form>
 
+
+<br>
+<u>Find your local swimming pool</u>
+<p>Enter Location Name</p>
+<form method="POST" action="patron.php">
+<!-- refreshes page when submitted -->
+
+<p><input type="text" name="queryLocationID" size="6">
+
+<input type="submit" value="Submit" name="selectLocationID">
+<input type="submit" value="Reset" name="selectAll"></p>
+</form>
+
+
+
+<br>
+<u>Memberships</u>
 <!-- Membership -->
 <p>Buy Membership</p>
 <p>
@@ -102,6 +121,8 @@
    </p>
 </form>
 
+<br>
+<u>Lockers</u>
 <!-- PatronLeasesLocker -->
 <p>Lease Locker</p>
 <p>
@@ -163,27 +184,27 @@
     #table {
         border: 1px solid black;
     }
-	
+
 	#Patron {
 		width: 35%;
 	}
-	
+
 	#PatronAll {
 		width: 5%;
 	}
-	
+
 	#Membership {
 		width: 25%;
 	}
-	
+
 	#Dependents {
 		width: 15%;
 	}
-	
+
 	#Visit {
 		width: 15%;
 	}
-	
+
 	#PatronLeasesLocker {
 		width: 30%;
 	}
@@ -217,7 +238,7 @@
 // keep track of errors so it redirects the page only if
 // there are no errors
 $success = True;
-$db_conn = OCILogon("ora_changmat", "a84452614", 
+$db_conn = OCILogon("ora_changmat", "a84452614",
                     "dbhost.students.cs.ubc.ca:1522/stu");
 
 function executePlainSQL($cmdstr) {
@@ -386,7 +407,7 @@ function printTable($resultFromSQL, $namesOfColumnsArray, $tablename, $id)
 // Connect Oracle...
 if ($db_conn) {
 	OCICommit($db_conn);
-	
+
 	if (array_key_exists('selectPatronID', $_POST)) {
 		// Get values from the user and insert data into
 			// the table.
@@ -400,26 +421,49 @@ if ($db_conn) {
 		$result = executeBoundSQL("select p.Name, p.DOB, p.Sex, p.Phone_Number, p.Postal_Code, a.Street, a.City, a.Province, p.Num_Dependents from Patron p, Address a where p.Postal_Code=a.Postal_Code and PatronID=:bind1", $alltuples);
 		$columnNames = array("Name", "DOB", "Sex", "Phone Number", "Postal Code", "Street", "City", "Province", "Dependents");
 		printTable($result, $columnNames, "Patron", "Patron");
-		
+
 		// Select data...
 		$result = executeBoundSQL("select m.MembershipID, m.Start_Date, me.End_Date, m.Amount_Paid, m.Payment_Type from Membership m, MembershipExpiry me where m.PatronID=me.PatronID and m.Start_Date=me.Start_Date and m.PatronID=:bind1", $alltuples);
 		$columnNames = array("MembershipID", "Start Date", "End Date", "Amount Paid ($)", "Payment Type");
 		printTable($result, $columnNames, "Memberships", "Membership");
-		
+
 		// Select data...
 		$result = executeBoundSQL("select Name, DOB, Sex, Relationship_To_Patron from Dependents where PatronID=:bind1", $alltuples);
 		$columnNames = array("Name", "DOB", "Sex", "Relationship");
 		printTable($result, $columnNames, "Dependents", "Dependents");
-		
+
 		// Select data...
 		$result = executeBoundSQL("select l.LocationID, l.Location_Name, v.visitdate from Visits v, Location l where v.LocationID=l.LocationID and PatronID=:bind1", $alltuples);
 		$columnNames = array("Location ID", "Location", "Date");
 		printTable($result, $columnNames, "Visits", "Visit");
-		
+
 		// Select data...
 		$result = executeBoundSQL("select l.LocationID, loc.Location_Name, pl.Locker_Num, l.Condition, pl.Lease_Start_Date, pl.Lease_End_Date from Location loc, PatronLeasesLocker pl, Locker l where pl.LocationID=loc.LocationID and pl.LocationID=l.LocationID and pl.Locker_Num=l.Locker_Num and pl.PatronID=:bind1", $alltuples);
 		$columnNames = array("LocationID", "Location", "Locker Number", "Locker Condition", "Lease Start", "Lease End");
 		printTable($result, $columnNames, "Lockers", "PatronLeasesLocker");
+	} else if (array_key_exists('selectLocationID', $_POST)) {
+		// Get values from the user and insert data into
+			// the table.
+		$tuple = array (
+			":bind1" => $_POST['queryLocationID']
+		);
+		$alltuples = array (
+			$tuple
+		);
+		// Select data...
+		$result = executeBoundSQL("select l.location_name, l.Opening_Time, l.Closing_Time, l.Phone_Number, l.Postal_Code, a.street, a.city, a.province from Location l, Address a where l.Postal_Code=a.Postal_Code and l.locationID=:bind1", $alltuples);
+		$columnNames = array("Name", "Opening Time", "Closing Time", "Phone Number", "Postal Code", "Street", "City", "Province");
+		printTable($result, $columnNames, "Location", "Location");
+
+    //this query is not working on the webpage, and I have no clue why. It works in the command line. I would love if someone could tell me what I am doing wrong here
+  /*  // Select data...
+		$result = executeBoundSQL("select r.Room_Type from Location l, Room r where l.locationID=2 and l.LocationID=r.LocationID", $alltuples);
+		$columnNames = array("Room Types");
+		printTable($result, $columnNames, "Facilities", "Facilities"); */
+    // Select data...
+		$result = executeBoundSQL("select lo.Locker_Num, lo.condition from Location l, Locker lo where l.LocationID=lo.LocationID and l.locationID=:bind1 and lo.locker_num not in (Select pll.locker_num from PatronLeasesLocker pll where pll.LocationID=l.locationID) order by lo.Locker_Num", $alltuples);
+		$columnNames = array("Locker_Num", "Condition");
+		printTable($result, $columnNames, "Empty Lockers", "Empty_Lockers");
 	} else {
 		if(array_key_exists('insert_dependents', $_POST)) {
 		// Update identified row in Address table
@@ -453,13 +497,13 @@ if ($db_conn) {
 			$alltuples = array (
 				$tuple
 			);
-			
+
 			executeBoundSQL("insert into Membership values (:bind1, :bind2, :bind4, :bind5, :bind6)", $alltuples);
 			executeBoundSQL("insert into MembershipExpiry values (:bind6, :bind2, :bind5, :bind3)", $alltuples);
 			OCICommit($db_conn);
 		} else if(array_key_exists('delete_membership', $_POST)) {
 			$deletedMembershipID_membership = $_POST['deletedMembershipID_membership'];
-			executePlainSQL("delete from MembershipExpiry where 
+			executePlainSQL("delete from MembershipExpiry where
 				PatronID=(select PatronID from Membership where MembershipID=$deletedMembershipID_membership) and
 				Start_Date=(select Start_Date from Membership where MembershipID=$deletedMembershipID_membership) and
 				Amount_Paid=(select Amount_Paid from Membership where MembershipID=$deletedMembershipID_membership)");
@@ -500,13 +544,20 @@ if ($db_conn) {
 			executePlainSQL("delete from patronleaseslocker where PatronID=$deletedPatronID_patronleaseslocker and Locker_Num=$deletedLockerNum_patronleaseslocker and LocationID=$deletedLocationID_patronleaseslocker");
 			OCICommit($db_conn);
 		}
-		
+
 		// Select data...
 		$result = executePlainSQL("select PatronID, Name from Patron");
 		/*printResult($result);*/
 		/* next two lines from Raghav replace previous line */
 		$columnNames = array("PatronID", "Name");
 		printTable($result, $columnNames, "Patrons", "PatronAll");
+
+    // Select data...
+    $result = executePlainSQL("select l.locationID, l.Location_Name from Location l order by locationID");
+    /*printResult($result);*/
+    /* next two lines from Raghav replace previous line */
+    $columnNames = array("LocationID", "Location Name");
+    printTable($result, $columnNames, "Locations", "LocationAll");
 	}
 	//Commit to save changes...
 	OCILogoff($db_conn);
