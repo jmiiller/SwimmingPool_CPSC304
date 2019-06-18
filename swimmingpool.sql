@@ -102,7 +102,7 @@ CREATE TABLE Dependents(
 CREATE TABLE Locker(
 	Locker_Num INTEGER,
 	LocationID INTEGER,
-	Condition CHAR(10),
+	Condition CHAR(15),
 	PRIMARY KEY (Locker_Num, LocationID),
 	FOREIGN KEY (LocationID) REFERENCES Location(LocationID) ON DELETE CASCADE);
 
@@ -112,7 +112,7 @@ CREATE TABLE PatronLeasesLocker(
 	LocationID INTEGER, /* added locationID to make Oracle happy */
 	Lease_Start_Date DATE,
 	Lease_End_Date DATE,
-	PRIMARY KEY (PatronID, Locker_Num),
+	PRIMARY KEY (PatronID, Locker_Num, LocationID),
 	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID),
 	FOREIGN KEY (Locker_Num, LocationID) REFERENCES Locker(Locker_Num, LocationID));
 
@@ -217,6 +217,21 @@ VALUES ('K2H5Y9', '2055 Robertson Rd', 'Nepean', 'ON');
 INSERT INTO Address
 VALUES ('M5G1Z4', '33 Gerrard St W', 'Toronto', 'ON');
 
+INSERT INTO Location
+VALUES(1, 'Thunderbird', 800, 2300, '7786826862', 'V6T1K2');
+
+INSERT INTO Location
+VALUES(2, 'RichmondCenter', 900, 2200, '6049581234', 'V6V0A1');
+
+INSERT INTO Location
+VALUES(3, 'Burnaby', 800, 2300, '6042988688', 'V5G1M2');
+
+INSERT INTO Location
+VALUES(4, 'Downtown1', 1100, 1900, '6136900100', 'K2H5Y9');
+
+INSERT INTO Location
+VALUES(5, 'Downtown2', 1130, 2200, '4165951975', 'M5G1Z4');
+
 INSERT INTO Patron
 VALUES(1, 'Chris', to_date('23/05/1987', 'DD/MM/YYYY'), 'M', '7786826666', 'V6T1K2', 1);
 
@@ -235,6 +250,24 @@ VALUES(5, 'Matthew', to_date('27/12/1997', 'DD/MM/YYYY'), 'M', '6134565798', 'K2
 INSERT INTO Patron
 VALUES(6, 'Joe', to_date('19/05/1982', 'DD/MM/YYYY'), 'M', '7786820527', 'M5G1Z4', 1);
 
+INSERT INTO Visits
+VALUES(1, 1, to_date('04/04/2019', 'DD/MM/YYYY'));
+
+INSERT INTO Visits
+VALUES(2, 2, to_date('04/04/2019', 'DD/MM/YYYY'));
+
+INSERT INTO Visits
+VALUES(2, 3, to_date('19/04/2019', 'DD/MM/YYYY'));
+
+INSERT INTO Visits
+VALUES(3, 4, to_date('23/02/2019', 'DD/MM/YYYY'));
+
+INSERT INTO Visits
+VALUES(4, 5, to_date('04/12/2018', 'DD/MM/YYYY'));
+
+INSERT INTO Visits
+VALUES(5, 6, to_date('04/04/2019', 'DD/MM/YYYY'));
+
 INSERT INTO Membership
 VALUES(101, to_date('05/05/2019', 'DD/MM/YYYY'), 'Visa', 9.99, 1);
 
@@ -252,7 +285,6 @@ VALUES(105, to_date('25/05/2019', 'DD/MM/YYYY'), 'Visa', 29.99, 5);
 
 INSERT INTO Membership
 VALUES(106, to_date('05/05/2019', 'DD/MM/YYYY'), 'Visa', 9.99, 6);
-
 
 INSERT INTO MembershipExpiry
 VALUES(1, to_date('05/05/2019', 'DD/MM/YYYY'), 9.99, to_date('05/06/2019', 'DD/MM/YYYY'));
@@ -289,6 +321,60 @@ VALUES('Tomas', 5, to_date('28/12/1966', 'DD/MM/YYYY'), 'M', 'Father');
 
 INSERT INTO Dependents
 VALUES('Pattson', 6, to_date('20/05/1983', 'DD/MM/YYYY'), 'M', 'Husband');
+
+INSERT INTO Locker
+VALUES(1,1, 'Out of Order');
+INSERT INTO Locker
+VALUES(2,1, 'Poor');
+INSERT INTO Locker
+VALUES(3,1, 'Poor');
+INSERT INTO Locker
+VALUES(4,1, 'Poor');
+INSERT INTO Locker
+VALUES(5,1, 'Poor');
+INSERT INTO Locker
+VALUES(1,2, 'Fair');
+INSERT INTO Locker
+VALUES(2,2, 'Fair');
+INSERT INTO Locker
+VALUES(3,2, 'Fair');
+INSERT INTO Locker
+VALUES(4,2, 'Fair');
+INSERT INTO Locker
+VALUES(1,3, 'Good');
+INSERT INTO Locker
+VALUES(2,3, 'Good');
+INSERT INTO Locker
+VALUES(3,3, 'Good');
+INSERT INTO Locker
+VALUES(1,4, 'Good');
+INSERT INTO Locker
+VALUES(2,4, 'Good');
+INSERT INTO Locker
+VALUES(3,4, 'Excellent');
+INSERT INTO Locker
+VALUES(1,5, 'Excellent');
+INSERT INTO Locker
+VALUES(2,5, 'Excellent');
+INSERT INTO Locker
+VALUES(3,5, 'Excellent');
+INSERT INTO Locker
+VALUES(4,5, 'Excellent');
+
+INSERT INTO PatronLeasesLocker
+VALUES(1, 1, 2, to_date('05/05/2019', 'DD/MM/YYYY'), to_date('05/05/2020', 'DD/MM/YYYY'));
+
+INSERT INTO PatronLeasesLocker
+VALUES(2, 2, 1, to_date('15/05/2019', 'DD/MM/YYYY'), to_date('15/05/2020', 'DD/MM/YYYY'));
+
+INSERT INTO PatronLeasesLocker
+VALUES(3, 3, 1, to_date('16/05/2019', 'DD/MM/YYYY'), to_date('16/05/2020', 'DD/MM/YYYY'));
+
+INSERT INTO PatronLeasesLocker
+VALUES(4, 4, 2, to_date('01/05/2019', 'DD/MM/YYYY'), to_date('01/05/2020', 'DD/MM/YYYY'));
+
+INSERT INTO PatronLeasesLocker
+VALUES(5, 4, 5, to_date('25/05/2019', 'DD/MM/YYYY'), to_date('25/05/2020', 'DD/MM/YYYY'));
 
 grant select on Address to public;
 grant select on Location to public;
