@@ -545,6 +545,435 @@
    </p>
 </form>
 
+<!-- Staff(11) -->
+<p> Insert Staff </p>
+<p><font size="2">StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  DOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  PayRate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  YTDpay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  HoursWorked&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="insStaffID_staff" size="8">
+      <input type="text" name="insName_staff" size="8">
+      <input type="text" name="insDOB_staff" size="8">
+      <input type="text" name="insSex_staff" size="8">
+      <input type="text" name="insPayRate_staff" size="8">
+      <input type="text" name="insYTDpay_staff" size="8">
+      <input type="text" name="insHoursWorked_staff" size="8">
+      <input type="text" name="insLocationID_staff" size="8">
+      <input type="submit" value="insert staff" name="insert_staff">
+   </p>
+</form>
+
+<p> Update Staff </p>
+<p><font size="2">Old StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New DOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New PayRate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New YTDpay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New HoursWorked&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LocationID</font></p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="oldStaffID_staff" size="8">
+      <input type="text" name="updatedStaffID_staff" size="8">
+      <input type="text" name="updatedName_staff" size="8">
+      <input type="text" name="updatedDOB_staff" size="8">
+      <input type="text" name="updatedSex_staff" size="8">
+      <input type="text" name="updatedPayRate_staff" size="8">
+      <input type="text" name="updatedYTDpay_staff" size="8">
+      <input type="text" name="updatedHoursWorked_staff" size="8">
+      <input type="text" name="updatedLocationID_staff" size="8">
+      <input type="submit" value="update staff" name="update_staff">
+   </p>
+</form>
+
+<!-- CleaningStaff(12) -->
+<p>Insert CleaningStaff</p>
+<p>
+  <font size="2"> StaffID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insStaffID_cleaningstaff" size="8">
+      <input type="submit" value="insert CleaningStaff" name="insert_staff">
+   </p>
+</form>
+
+<p>Update CleaningStaff</p>
+<p>
+  <font size="2">Old StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 New StaffID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldStaffID_cleaningstaff" size="8">
+      <input type="text" name="updatedStaffID_cleaningstaff" size="8">
+      <input type="submit" value="update CleaningStaff" name="update_staff">
+   </p>
+</form>
+
+<!-- Lifeguard(13) -->
+<p>Insert Lifeguard</p>
+<p>
+  <font size="2"> StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  CPRExpiryDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  SupervisorID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insStaffID_lifeguard" size="8">
+      <input type="text" name="insCPRExpiryDate_lifeguard" size="8">
+      <input type="text" name="insSupervisorID_lifeguard" size="8">
+      <input type="submit" value="insert Lifeguard" name="insert_lifeguard">
+   </p>
+</form>
+
+<p>Update Lifeguard</p>
+<p>
+  <font size="2"> Old StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New CPRExpiryDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New SupervisorID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldStaffID_lifeguard" size="8">
+      <input type="text" name="updatedStaffID_lifeguard" size="8">
+      <input type="text" name="updatedCPRExpiryDate_lifeguard" size="8">
+      <input type="text" name="updatedSupervisorID_lifeguard" size="8">
+      <input type="submit" value="update Lifeguard" name="update_lifeguard">
+   </p>
+</form>
+
+<!-- Shift(14) -->
+<p>Insert Shift</p>
+<p>
+  <font size="2"> DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Start_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  End_Time</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insDate_shift" size="8">
+      <input type="text" name="insStart_Time_shift" size="8">
+      <input type="text" name="insEnd_Time_shift" size="8">
+      <input type="submit" value="insert Shift" name="insert_shift">
+   </p>
+</form>
+
+<p>Update Shift</p>
+<p>
+  <font size="2"> Old DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old Start_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old End_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New Start_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New End_Time</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldDate_shift" size="8">
+      <input type="text" name="oldStart_Time_shift" size="8">
+      <input type="text" name="oldEnd_Time_shift" size="8">
+      <input type="text" name="updatedDate_shift" size="8">
+      <input type="text" name="updatedStart_Time_shift" size="8">
+      <input type="text" name="updatedEnd_Time_shift" size="8">
+      <input type="submit" value="update Shift" name="update_shift">
+   </p>
+</form>
+
+<!-- StaffWorkShift(15) -->
+<p>Insert StaffWorksShift</p>
+<p>
+  <font size="2"> StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Start_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  End_Time</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insStaffID_staffworksshift" size="8">  
+      <input type="text" name="insDate_staffworksshift" size="8">
+      <input type="text" name="insStart_Time_staffworksshift" size="8">
+      <input type="text" name="insEnd_Time_staffworksshift" size="8">
+      <input type="submit" value="insert StaffWorksShift" name="insert_staffworksshift">
+   </p>
+</form>
+
+<p>Update StaffWorksShift</p>
+<p>
+  <font size="2"> Old StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old Start_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old End_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New DATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New Start_Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New End_Time</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldStaffID_staffworksshift" size="8">  
+      <input type="text" name="oldDate_staffworksshift" size="8">
+      <input type="text" name="oldStart_Time_staffworksshift" size="8">
+      <input type="text" name="oldEnd_Time_staffworksshift" size="8">
+      <input type="text" name="updatedStaffID_staffworksshift" size="8">  
+      <input type="text" name="updatedDate_staffworksshift" size="8">
+      <input type="text" name="updatedStart_Time_staffworksshift" size="8">
+      <input type="text" name="updatedEnd_Time_staffworksshift" size="8">
+      <input type="submit" value="update StaffWorksShift" name="update_staffworksshift">
+   </p>
+</form>
+
+<!-- Room(16) -->
+<p>Insert Room</p>
+<p>
+  <font size="2"> RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  RoomType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Condiiton</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insRoomNumber" size="8">
+      <input type="text" name="insLocationID" size="8">
+      <input type="text" name="insRoomType" size="8">
+      <input type="text" name="insCondition" size="8">
+      <input type="submit" value="insert Room" name="insert_Room">
+   </p>
+</form>
+
+<p>Update Room</p>
+<p>
+  <font size="2"> Old RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New RoomType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New Condition</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldRoomNumber" size="8">
+      <input type="text" name="oldLocationID" size="8">
+      <input type="text" name="updatedRoomNumber" size="8">
+      <input type="text" name="updatedLocationID" size="8">
+      <input type="text" name="updatedRoomType" size="8">
+      <input type="text" name="updatedCondition" size="8">
+      <input type="submit" value="update Room" name="update_Room">
+   </p>
+</form>
+
+<!-- RoomCapacity(17) -->
+<p>Insert RoomCapacity</p>
+<p>
+  <font size="2"> RoomType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Capacity</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insRoomType" size="8">
+      <input type="text" name="insCapacity" size="8">
+      <input type="submit" value="insert RoomCapacity" name="insert_RoomCapacity">
+   </p>
+</form>
+
+<p>Update RoomCapacity</p>
+<p>
+  <font size="2"> Old RoomType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New RoomType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New Capacity</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldRoomType" size="8">
+      <input type="text" name="updatedRoomType" size="8">
+      <input type="text" name="updatedCapacity" size="8">
+      <input type="submit" value="update RoomCapacity" name="update_RoomCapacity">
+   </p>
+</form>
+
+<!-- RoomCleaningStatus(18) -->
+<p>Insert RoomCleaningStatus</p>
+<p>
+  <font size="2"> RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LastCleanedDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  AdditionalNotes</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insRoomNumber" size="8">
+      <input type="text" name="insLocationID" size="8">
+      <input type="text" name="insLastCleanedDate" size="8">
+      <input type="text" name="insAdditionalNotes" size="8">
+      <input type="submit" value="insert RoomCleaningStatus" name="insert_RoomCleaningStatus">
+   </p>
+</form>
+
+<p>Update RoomCleaningStatus</p>
+<p>
+  <font size="2"> Old RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LastCleanedDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New AdditionalNotes</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldRoomNumber" size="8">
+      <input type="text" name="oldLocationID" size="8">
+      <input type="text" name="updatedRoomNumber" size="8">
+      <input type="text" name="updatedLocationID" size="8">
+      <input type="text" name="updatedLastCleanedDate" size="8">
+      <input type="text" name="updatedAdditionalNotes" size="8">
+      <input type="submit" value="update RoomCleaningStatus" name="update_RoomCleaningStatus">
+   </p>
+</form>
+
+<!-- CleaningStaffCleansRoom(19) -->
+<p>Insert CleaningStaffCleansRoom</p>
+<p>
+  <font size="2"> StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p><input type="text" name="insStaffID" size="8">
+      <input type="text" name="insRoomNumber" size="8">
+      <input type="text" name="insLocationID" size="8">
+      <input type="submit" value="insert CleaningStaffCleansRoom" name="insert_CleaningStaffCleansRoom">
+   </p>
+</form>
+
+<p>Update CleaningStaffCleansRoom</p>
+<p>
+  <font size="2"> Old StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New RoomNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LocationID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldStaffID" size="8">
+      <input type="text" name="oldRoomNumber" size="8">
+      <input type="text" name="oldLocationID" size="8">
+      <input type="text" name="updatedStaffID" size="8">
+      <input type="text" name="updatedRoomNumber" size="8">
+      <input type="text" name="updatedLocationID" size="8">
+      <input type="submit" value="update CleaningStaffCleansRoom" name="update_CleaningStaffCleansRoom">
+   </p>
+</form>
+
+<!-- LockerMaintenanceStatus(20) -->
+<p>Insert LockerMaintenanceStatus</p>
+<p>
+  <font size="2"> LockerNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LastCleanedDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  AdditionalNotes</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="insLockerNumber" size="8">
+      <input type="text" name="insLocationID" size="8">
+      <input type="text" name="insLastCleanedDate" size="8">
+      <input type="text" name="insAdditionalNotes" size="8">
+      <input type="submit" value="insert LockerMaintenanceStatus" name="insert_LockerMaintenanceStatus">
+   </p>
+</form>
+
+<p>Update LockerMaintenanceStatus</p>
+<p>
+  <font size="2"> Old LockerNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LockerNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LastCleanedDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New AdditionalNotes</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldLockerNumber" size="8">
+      <input type="text" name="oldLocationID" size="8">
+      <input type="text" name="updatedLockerNumber" size="8">
+      <input type="text" name="updatedLocationID" size="8">
+      <input type="text" name="updatedLastCleanedDate" size="8">
+      <input type="text" name="updatedAdditionalNotes" size="8">
+      <input type="submit" value="update LockerMaintenanceStatus" name="update_LockerMaintenanceStatus">
+   </p>
+</form>
+
+<!-- CleaningStaffMaintancesLocker(21) -->
+<p>Insert CleaningStaffMaintancesLocker</p>
+<p>
+  <font size="2"> StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LockerNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  LocationID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p><input type="text" name="insStaffID" size="8">
+      <input type="text" name="insLockerNumber" size="8">
+      <input type="text" name="insLocationID" size="8">
+      <input type="submit" value="insert CleaningStaffMaintancesLocker" name="insert_CleaningStaffMaintancesLocker">
+   </p>
+</form>
+
+<p>Update CleaningStaffMaintancesLocker</p>
+<p>
+  <font size="2"> Old StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old LockerNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Old LocationID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New StaffID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LockerNumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  New LocationID</font>
+</p>
+<form method="POST" action="swimmingpool.php">
+<!-- refreshes page when submitted -->
+   <p>
+      <input type="text" name="oldStaffID" size="8">
+      <input type="text" name="oldLockerNumber" size="8">
+      <input type="text" name="oldLocationID" size="8">
+      <input type="text" name="updatedStaffID" size="8">
+      <input type="text" name="updatedLockerNumber" size="8">
+      <input type="text" name="updatedLocationID" size="8">
+      <input type="submit" value="update CleaningStaffMaintancesLocker" name="update_CleaningStaffMaintancesLocker">
+   </p>
+</form>
+
 <html>
 <style>
     table {
@@ -1108,14 +1537,14 @@ if ($db_conn) {
     } else if(array_key_exists('insert_staff', $_POST)) {
       // Insert into Staff table(11)
 			$tuple = array (
-        ":bind1" => $_POST['insStaffID'],
-        ":bind2" => $_POST['insName'],
-				":bind3" => $_POST['insDOB'],
-        ":bind4" => $_POST['insSex'],
-        ":bind5" => $_POST['insPayrate'],
-        ":bind6" => $_POST['insYTDpay'],
-        ":bind7" => $_POST['insHoursWorkedInCurrentPeriod'],
-        ":bind8" => $_POST['insLocationID']
+        ":bind1" => $_POST['insStaffID_staff'],
+        ":bind2" => $_POST['insName_staff'],
+				":bind3" => $_POST['insDOB_staff'],
+        ":bind4" => $_POST['insSex_staff'],
+        ":bind5" => $_POST['insPayrate_staff'],
+        ":bind6" => $_POST['insYTDpay_staff'],
+        ":bind7" => $_POST['insHoursWorkedInCurrentPeriod_staff'],
+        ":bind8" => $_POST['insLocationID_staff']
 			);
 			$alltuples = array (
 				$tuple
@@ -1125,15 +1554,15 @@ if ($db_conn) {
     }else if(array_key_exists('update_staff', $_POST)) {
       // Update identified row in Staff table(11)
 			$tuple = array (
-        ":bind1" => $_POST['oldStaffID'],
-        ":bind2" => $_POST['updatedStaffID'],
-        ":bind3" => $_POST['updatedName'],
-				":bind4" => $_POST['updatedDOB'],
-        ":bind5" => $_POST['updatedSex'],
-        ":bind6" => $_POST['updatedPayrate'],
-        ":bind7" => $_POST['updatedYTDpay'],
-        ":bind8" => $_POST['updatedHoursWorkedInCurrentPeriod'],
-        ":bind9" => $_POST['updatedLocationID']
+        ":bind1" => $_POST['oldStaffID_staff'],
+        ":bind2" => $_POST['updatedStaffID_staff'],
+        ":bind3" => $_POST['updatedName_staff'],
+				":bind4" => $_POST['updatedDOB_staff'],
+        ":bind5" => $_POST['updatedSex_staff'],
+        ":bind6" => $_POST['updatedPayrate_staff'],
+        ":bind7" => $_POST['updatedYTDpay_staff'],
+        ":bind8" => $_POST['updatedHoursWorkedInCurrentPeriod_staff'],
+        ":bind9" => $_POST['updatedLocationID_staff']
 			);
 			$alltuples = array (
 				$tuple
@@ -1213,7 +1642,7 @@ if ($db_conn) {
 			);
 			executeBoundSQL("update Lifeguard set Date=:bind4, StartTime=:bind5, EndTime=:bind6, where Date=:bind1, StartTime=:bind2, EndTime=:bind3", $alltuples);
 			OCICommit($db_conn);
-    }else if(array_key_exists('insert_staffworkshift', $_POST)) {
+    }else if(array_key_exists('insert_staffworksshift', $_POST)) {
       // Insert into Staffshift table(15)
 			$tuple = array (
         ":bind1" => $_POST['insStaffID'],
@@ -1226,7 +1655,7 @@ if ($db_conn) {
 			);
 			executeBoundSQL("insert into StaffShift values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
 			OCICommit($db_conn);
-    }else if(array_key_exists('update_staffworkshift', $_POST)) {
+    }else if(array_key_exists('update_staffworksshift', $_POST)) {
       // Update identified row in Staffshift table(15)
 			$tuple = array (
         ":bind1" => $_POST['oldStaffID'],
@@ -1241,7 +1670,7 @@ if ($db_conn) {
 			$alltuples = array (
 				$tuple
 			);
-			executeBoundSQL("update Lifeguard set StaffID=:bind5, Date=:bind6, StartTime=:bind7, EndTime=:bind8, where StaffID=:bind1, Date=:bind2, StartTime=:bind3, EndTime=:bind4", $alltuples);
+			executeBoundSQL("update staffworksshift set StaffID=:bind5, Date=:bind6, StartTime=:bind7, EndTime=:bind8, where StaffID=:bind1, Date=:bind2, StartTime=:bind3, EndTime=:bind4", $alltuples);
 			OCICommit($db_conn);
     }else if(array_key_exists('insert_Room', $_POST)) {
       // Insert into Room table(16)
@@ -1474,7 +1903,7 @@ if ($db_conn) {
   // Get Staff Data(11)
   $result_staff = executePlainSQL("select * from staff");
   $columnNames_staff = array("StaffID", "Name", "DOB", "Sex", "Pay_Rate", "YTD_Pay", "HoursWorkedInCurrentPeriod", "LocationID");
-  printTable($result_staff, $result_staff, "Staff");
+  printTable($result_staff, $columnNames_staff, "Staff");
 
   // Get CleaningStaff Data(12)
   $result_cleaningstaff = executePlainSQL("select * from cleaningstaff");
@@ -1492,9 +1921,9 @@ if ($db_conn) {
   printTable($result_shift, $columnNames_shift, "Shift");
   
   // Get StaffWorkShift Data(15)
-  $result_staffworkshift = executePlainSQL("select * from staffworkshift");
-  $columnNames_staffworkshift = array("StaffID", "Date", "StartTime", "EndTime");
-  printTable($result_staffworkshift, $columnNames_staffworkshift, "StaffWorkShift");
+  $result_staffworksshift = executePlainSQL("select * from staffworksshift");
+  $columnNames_staffworksshift = array("StaffID", "Date", "StartTime", "EndTime");
+  printTable($result_staffworksshift, $columnNames_staffworksshift, "StaffWorksShift");
 
   // Get Room Data(16)
   $result_Room = executePlainSQL("select * from Room");
