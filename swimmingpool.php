@@ -1105,6 +1105,306 @@ if ($db_conn) {
       $deletedLocationID_patronleaseslocker = $_POST['deletedLocationID_patronleaseslocker'];
       executePlainSQL("delete from patronleaseslocker where PatronID=$deletedPatronID_patronleaseslocker and Locker_Num=$deletedLockerNum_patronleaseslocker and LocationID=$deletedLocationID_patronleaseslocker");
     	OCICommit($db_conn);
+    } else if(array_key_exists('insert_staff', $_POST)) {
+      // Insert into Staff table(11)
+			$tuple = array (
+        ":bind1" => $_POST['insStaffID'],
+        ":bind2" => $_POST['insName'],
+				":bind3" => $_POST['insDOB'],
+        ":bind4" => $_POST['insSex'],
+        ":bind5" => $_POST['insPayrate'],
+        ":bind6" => $_POST['insYTDpay'],
+        ":bind7" => $_POST['insHoursWorkedInCurrentPeriod'],
+        ":bind8" => $_POST['insLocationID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into Staff values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6, :bind7, :bind8)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_staff', $_POST)) {
+      // Update identified row in Staff table(11)
+			$tuple = array (
+        ":bind1" => $_POST['oldStaffID'],
+        ":bind2" => $_POST['updatedStaffID'],
+        ":bind3" => $_POST['updatedName'],
+				":bind4" => $_POST['updatedDOB'],
+        ":bind5" => $_POST['updatedSex'],
+        ":bind6" => $_POST['updatedPayrate'],
+        ":bind7" => $_POST['updatedYTDpay'],
+        ":bind8" => $_POST['updatedHoursWorkedInCurrentPeriod'],
+        ":bind9" => $_POST['updatedLocationID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update staff set StaffID=:bind2, Name=:bind3, DOB=:bind4, Sex=:bind5, Payrate=:bind6, YTD_pay=:bind7, HoursWorkedInCurrentPeriod=:bind8, LocationID=:bind9 where staffID=:bind1", $alltuples);
+			OCICommit($db_conn);
+    } else if(array_key_exists('insert_cleaningstaff', $_POST)) {
+      // Insert into Staff table(12)
+			$tuple = array (
+        ":bind1" => $_POST['insStaffID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into Staff values (:bind1)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_cleaningstaff', $_POST)) {
+      // Update identified row in Staff table(12)
+			$tuple = array (
+        ":bind1" => $_POST['oldCleaningStaffID'],
+        ":bind2" => $_POST['updatedCleaningStaffID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Cleaningstaff set staffID=:bind2 where staffID=:bind1", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_lifeguard', $_POST)) {
+      // Insert into Lifeguard table(13)
+			$tuple = array (
+        ":bind1" => $_POST['insStaffID'],
+        ":bind2" => $_POST['insCPRExpiryDate'],
+        ":bind3" => $_POST['insSupervisorID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into Lifeguard values (:bind1, :bind2, :bind3)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_lifeguard', $_POST)) {
+      // Update identified row in Lifeguard table(13)
+			$tuple = array (
+        ":bind1" => $_POST['oldStaffID'],
+        ":bind2" => $_POST['updatedStaffID'],
+        ":bind3" => $_POST['updatedCPRExpiryDate'],
+        ":bind4" => $_POST['updatedSupervisorID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Lifeguard set staffID=:bind2, CPRExpiryDate=:bind3, SupervisorID=:bind4, where S  taffID=:bind1", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_shift', $_POST)) {
+      // Insert into shift table(14)
+			$tuple = array (
+        ":bind1" => $_POST['insDate'],
+        ":bind2" => $_POST['insStartTime'],
+        ":bind3" => $_POST['insEndTime']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into Shift values (:bind1, :bind2, :bind3)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_shift', $_POST)) {
+      // Update identified row in shift table(14)
+			$tuple = array (
+        ":bind1" => $_POST['oldDate'],
+        ":bind2" => $_POST['oldStartTime'],
+        ":bind3" => $_POST['oldEndTime'],
+        ":bind4" => $_POST['updatedDate'],
+        ":bind5" => $_POST['updatedStartTime'],
+        ":bind6" => $_POST['updatedEndTime']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Lifeguard set Date=:bind4, StartTime=:bind5, EndTime=:bind6, where Date=:bind1, StartTime=:bind2, EndTime=:bind3", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_staffworkshift', $_POST)) {
+      // Insert into Staffshift table(15)
+			$tuple = array (
+        ":bind1" => $_POST['insStaffID'],
+        ":bind2" => $_POST['insDate'],
+        ":bind3" => $_POST['insStartTime'],
+        ":bind4" => $_POST['insEndTime']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into StaffShift values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_staffworkshift', $_POST)) {
+      // Update identified row in Staffshift table(15)
+			$tuple = array (
+        ":bind1" => $_POST['oldStaffID'],
+        ":bind2" => $_POST['oldDate'],
+        ":bind3" => $_POST['oldStartTime'],
+        ":bind4" => $_POST['oldEndTime'],
+        ":bind5" => $_POST['updatedStaffID'],
+        ":bind6" => $_POST['updatedDate'],
+        ":bind7" => $_POST['updatedStartTime'],
+        ":bind8" => $_POST['updatedEndTime']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Lifeguard set StaffID=:bind5, Date=:bind6, StartTime=:bind7, EndTime=:bind8, where StaffID=:bind1, Date=:bind2, StartTime=:bind3, EndTime=:bind4", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_Room', $_POST)) {
+      // Insert into Room table(16)
+			$tuple = array (
+        ":bind1" => $_POST['insRoomNumber'],
+        ":bind2" => $_POST['insLocationID'],
+        ":bind3" => $_POST['insRoomType'],
+        ":bind4" => $_POST['insCondition']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into Room values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_Room', $_POST)) {
+      // Update identified row in Room table(16)
+			$tuple = array (
+        ":bind1" => $_POST['oldRoomNumber'],
+        ":bind2" => $_POST['oldLocationID'],
+        ":bind3" => $_POST['updatedRoomNumber'],
+        ":bind4" => $_POST['updatedLocationID'],
+        ":bind5" => $_POST['updatedRoomType'],
+        ":bind6" => $_POST['updatedCondition']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Room set RoomNumber=:bind3, LocationID=:bind4, RoomType=:bind5, Condition=:bind6, where RoomNumber=:bind1, LocationID=:bind2", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_RoomCapacity', $_POST)) {
+      // Insert into RoomCapacity table(17)
+			$tuple = array (
+        ":bind1" => $_POST['insRoomType'],
+        ":bind2" => $_POST['insCapacity']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into RoomCapacity values (:bind1, :bind2)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_RoomCapacity', $_POST)) {
+      // Update identified row in RoomCapacity table(17)
+			$tuple = array (
+        ":bind1" => $_POST['oldRoomType'],
+        ":bind2" => $_POST['updatedRoomType'],
+        ":bind3" => $_POST['updatedCapacity']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Room set RoomType=:bind2, Capacity=:bind3, where RoomType=:bind1", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_RoomCleaningStatus', $_POST)) {
+      // Insert into RoomCleaningStatus table(18)
+			$tuple = array (
+        ":bind1" => $_POST['insRoomNumber'],
+        ":bind2" => $_POST['insLocationID'],
+        ":bind3" => $_POST['insLastCleanedDate'],
+        ":bind4" => $_POST['insAdditionNotes']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into RoomCleaningStatus values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_RoomCleaningStatus', $_POST)) {
+      // Update identified row in RoomCleaningStatus table(18)
+			$tuple = array (
+        ":bind1" => $_POST['oldRoomNumber'],
+        ":bind2" => $_POST['oldLocationID'],
+        ":bind3" => $_POST['updatedRoomNumber'],
+        ":bind4" => $_POST['updatedLocationID'],
+        ":bind5" => $_POST['updatedLastCleanedDate'],
+        ":bind6" => $_POST['updatedAdditionalNotes']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Room set RoomNumber=:bind3, LocationID=:bind4, LastCleanedDate=:bind5, AdditionalNotes=:bind6 where RoomNumber=:bind1, LocationID=:bind2", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_CleaningStaffCleansRoom', $_POST)) {
+      // Insert into CtleaningSaffCleansRoom table(19)
+			$tuple = array (
+        ":bind1" => $_POST['insStaffID'],
+        ":bind2" => $_POST['insRoomNumber'],
+        ":bind3" => $_POST['insLocationID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into CtleaningSaffCleansRoom values (:bind1, :bind2, :bind3)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_CtleaningSaffCleansRoom', $_POST)) {
+      // Update identified row in CtleaningSaffCleansRoom table(19)
+			$tuple = array (
+        ":bind1" => $_POST['oldStaffID'],
+        ":bind2" => $_POST['oldRoomNumber'],
+        ":bind3" => $_POST['oldLocationID'],
+        ":bind4" => $_POST['updatedStaffID'],
+        ":bind5" => $_POST['updatedRoomNumber'],
+        ":bind6" => $_POST['updatedLocationID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Room set StaffID=:bind4, RoomNumber=:bind5, LocationID=:bind6 where StaffID=:bind1, RoomNumber=:bind2, LocationID=:bind3" , $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('insert_LockerMaintenanceStatus', $_POST)) {
+      // Insert into LockerMaintenanceStatus table(20)
+			$tuple = array (
+        ":bind1" => $_POST['insLockerNumber'],
+        ":bind2" => $_POST['insLocationID'],
+        ":bind3" => $_POST['insLastMaintenanceDate'],
+        ":bind4" => $_POST['insAdditionalNotes']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into LockerMaintenanceStatus values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_LockerMaintenanceStatus', $_POST)) {
+      // Update identified row in LockerMaintenanceStatus table(20)
+			$tuple = array (
+        ":bind1" => $_POST['oldLockerNumber'],
+        ":bind2" => $_POST['oldLocationID'],
+        ":bind3" => $_POST['updatedLockerNumber'],
+        ":bind4" => $_POST['updatedLocationID'],
+        ":bind5" => $_POST['updatedLastMaintenanceDate'],
+        ":bind6" => $_POST['updatedAdditionalNotes']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Room set LockerNumber=:bind3, LocationID=:bind4, LastMaintenanceDate=:bind5, AdditionalNotes=:bind6 where LockerNumber=:bind1, LocationID=:bind2" , $alltuples);
+			OCICommit($db_conn);
+    }
+    else if(array_key_exists('insert_CleaningStaffMaintainsLocker', $_POST)) {
+      // Insert into CleaningStaffMaintainsLocker table(21)
+			$tuple = array (
+        ":bind1" => $_POST['insStaffID'],
+        ":bind2" => $_POST['insLockerNumber'],
+        ":bind3" => $_POST['insLocationID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("insert into CleaningStaffMaintainsLocker values (:bind1, :bind2, :bind3)", $alltuples);
+			OCICommit($db_conn);
+    }else if(array_key_exists('update_CleaningStaffMaintainsLocker', $_POST)) {
+      // Update identified row in CleaningStaffMaintainsLocker table(21)
+			$tuple = array (
+        ":bind1" => $_POST['oldStaffID'],
+        ":bind2" => $_POST['oldLockerNmber'],
+        ":bind3" => $_POST['oldLocationID'],
+        ":bind4" => $_POST['updatedStaffID'],
+        ":bind5" => $_POST['updatedLockerNumber'],
+        ":bind6" => $_POST['updatedLocationID']
+			);
+			$alltuples = array (
+				$tuple
+			);
+			executeBoundSQL("update Room set StaffID=:bind4, LockerNumber=:bind5, LocationID=:bind6 where StaffID=:bind1, LockerNumber=:bind2, LocationID=:bind3" , $alltuples);
+			OCICommit($db_conn);
     }
 
 		OCICommit($db_conn);
@@ -1170,6 +1470,61 @@ if ($db_conn) {
   $result_patronleaseslocker = executePlainSQL("select * from patronleaseslocker");
   $columnNames_patronleaseslocker = array("PatronID", "Locker Number", "LocationID", "Lease Start Date", "Lease End Date");
   printTable($result_patronleaseslocker, $columnNames_patronleaseslocker, "PatronLeasesLocker");
+
+  // Get Staff Data(11)
+  $result_staff = executePlainSQL("select * from staff");
+  $columnNames_staff = array("StaffID", "Name", "DOB", "Sex", "Pay_Rate", "YTD_Pay", "HoursWorkedInCurrentPeriod", "LocationID");
+  printTable($result_staff, $result_staff, "Staff");
+
+  // Get CleaningStaff Data(12)
+  $result_cleaningstaff = executePlainSQL("select * from cleaningstaff");
+  $columnNames_cleaningstaff = array("StaffID");
+  printTable($result_cleaningstaff, $columnNames_cleaningstaff, "CleaningStaff");
+
+  // Get Lifeguard Data(13)
+  $result_lifeguard = executePlainSQL("select * from lifeguard");
+  $columnNames_lifeguard = array("StaffID", "CPR_Expiry Date", "SupervisorID");
+  printTable($result_lifeguard, $columnNames_lifeguard, "Lifeguard");
+
+  // Get Shift Data(14)
+  $result_shift = executePlainSQL("select * from shift");
+  $columnNames_shift = array("DATE", "StartTime", "EndTime");
+  printTable($result_shift, $columnNames_shift, "Shift");
+  
+  // Get StaffWorkShift Data(15)
+  $result_staffworkshift = executePlainSQL("select * from staffworkshift");
+  $columnNames_staffworkshift = array("StaffID", "Date", "StartTime", "EndTime");
+  printTable($result_staffworkshift, $columnNames_staffworkshift, "StaffWorkShift");
+
+  // Get Room Data(16)
+  $result_Room = executePlainSQL("select * from Room");
+  $columnNames_Room = array("RoomNumber", "LocationID", "Type", "Condition");
+  printTable($result_Room, $columnNames_Room, "Room");
+
+  // Get RoomCapacity Data(17)
+  $result_RoomCapacity = executePlainSQL("select * from RoomCapacity");
+  $columnNames_RoomCapacity = array("Type", "Capacity");
+  printTable($result_RoomCapacity, $columnNames_RoomCapacity, "RoomCapacity");
+
+  // Get RoomCleaningStatus Data(18)
+  $result_RoomCleaningStatus = executePlainSQL("select * from RoomCleaningStatus");
+  $columnNames_RoomCleaningStatus = array("RoomNumber", "LocationID", "LastCleanedDate", "AdditionalNotes");
+  printTable($result_RoomCleaningStatus, $columnNames_RoomCleaningStatus, "RoomCleaningStatus");
+
+  // Get CleaningStaffCleansRoom Data(19)
+  $result_CleaningStaffCleansRoom = executePlainSQL("select * from CleaningStaffCleansRoom");
+  $columnNames_CleaningStaffCleansRoom = array("StaffID", "RoomNumber", "LocationID");
+  printTable($result_CleaningStaffCleansRoom, $columnNames_CleaningStaffCleansRoom, "CleaningStaffCleansRoom");
+
+  // Get LockerMaintenanceStatus Data(20)
+  $result_LockerMaintenanceStatus = executePlainSQL("select * from LockerMaintenanceStatus");
+  $columnNames_LockerMaintenanceStatus = array("LockerNumber", "LocationID", "LastMaintenance", "AdditionalNotes");
+  printTable($result_LockerMaintenanceStatus, $columnNames_LockerMaintenanceStatus, "LockerMaintenanceStatus");
+
+  // Get CleaningStaffMaintainsLocker Data(21)
+  $result_CleaningStaffMaintainsLocker = executePlainSQL("select * from CleaningStaffMaintainsLocker");
+  $columnNames_CleaningStaffMaintainsLocker = array("StaffID", "LockerNumber", "LocationID");
+  printTable($result_CleaningStaffMaintainsLocker, $columnNames_CleaningStaffMaintainsLocker, "CleaningStaffMaintainsLocker");
 
 	//Commit to save changes...
 	OCILogoff($db_conn);
