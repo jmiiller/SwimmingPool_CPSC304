@@ -11,3 +11,7 @@ Schema Changes:
 #6 - Room: Made "Room_Type" field into a foreign key of RoomCapacity. Our TA suggested this to us after handing in Milestone 3.
 #7 - Renamed attributes Condition in Locker and Room to Locker_Condition and Room_Condition respectively. The XAMPP server did not like the attribute name Condition.
 #8 - MembershipExpiry - Added PatronID as a Primary Key as it did not work well with only Start_Date and Amount_Paid as Primary Keys.
+#9 - Visits schema: Made PatronID foreign key to Patron to be ON DELETE CASCADE. Such that patrons can have all of their personal data removed from the system after they decide to cease their relation with the swimming pool, if they so choose.
+#10 - Memberships schema: Made PatronID foreign key to Patron to be ON DELETE CASCADE. Such that patrons can have all of their personal data removed from the system after they decide to cease their relation with the swimming pool, if they so choose.
+#11 - Membershipexpiry schema: Made PatronID foreign key to Patron to be ON DELETE CASCADE. Such that patrons can have all of their personal data removed from the system after they decide to cease their relation with the swimming pool, if they so choose.
+#10 - PatronLeasesLocker schema: Made PatronID foreign key to Patron to be ON DELETE CASCADE. Such that patrons can have all of their personal data removed from the system after they decide to cease their relation with the swimming pool, if they so choose.  
