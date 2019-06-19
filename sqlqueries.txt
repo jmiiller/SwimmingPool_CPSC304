@@ -28,6 +28,26 @@ group by p.PatronID, p.Name, p.DOB, p.Sex, p.Phone_Number, p.Postal_Code, a.Stre
 Aggregation Query:
 "SELECT COUNT(StaffID) AS Num FROM Lifeguard WHERE StaffID=$bind1"
 
+Nested aggregation with group-by:
+
+"SELECT l.LocationID, l.Location_Name, COUNT(r.Room_Num) AS Room_Count
+                                     FROM Location l, Room r
+                                     WHERE l.LocationID=r.LocationID
+                                     GROUP BY l.LocationID, l.Location_Name
+                                     ORDER BY l.LocationID ASC"
+
+Division query:
+
+SELECT DISTINCT x.LocationID, x.Location_Name
+FROM Location x
+WHERE NOT EXISTS(
+	SELECT y.Room_Type
+	FROM RoomCapacity y
+	WHERE NOT EXISTS(
+		SELECT z.Room_Type
+		FROM Room z
+		WHERE z.LocationID=x.LocationID AND z.Room_Type=y.Room_Type))"
+
 ~~
 
 Other queries in patron.php:
@@ -55,6 +75,16 @@ where l.locationID=$bind1 and l.LocationID=r.LocationID and r.Room_Type=rc.Room_
 "select lo.Locker_Num, lo.Locker_Condition
 from Location l, Locker lo
 where l.LocationID=lo.LocationID and l.LocationID=$bind1 and lo.Locker_Num not in (Select pll.Locker_Num from PatronLeasesLocker pll where pll.LocationID=l.LocationID) order by lo.Locker_Num"
+
+"delete from MembershipExpiry where PatronID=$deletedPatronID_patron"
+
+"delete from Membership where PatronID=$deletedPatronID_patron"
+
+"delete from patronleaseslocker where PatronID=$deletedPatronID_patron"
+
+"delete from Visits where PatronID=$deletedPatronID_patron"
+
+"delete from Patron where PatronID=$deletedPatronID_patron"
 
 "insert into Dependents (Name, PatronID, DOB, Sex, Relationship_To_Patron) values ('$bind1', $bind2, date '$bind3', '$bind4', '$bind5')"
 
