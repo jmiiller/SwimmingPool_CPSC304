@@ -1,15 +1,36 @@
 ~~Patron.php~~
 
+Interesting Queries (for milestone 6):
+
+Insertion:
+"insert into PatronLeasesLocker (PatronID,Locker_Num, LocationID, Lease_Start_Date, Lease_End_Date) values ($bind1, $bind2, $bind3, date '$bind4', date '$bind5')"
+
+Updating:
+"update PatronLeasesLocker
+set Lease_Start_Date=date '$bind4', Lease_End_Date=date '$bind5'
+where PatronID=$bind1 and Locker_Num=$bind2 and LocationID=$bind3"
+
+Deletion (with ON DELETE CASCADE):
+
+Selection:
+"select Name, DOB, Sex, Relationship_To_Patron from Dependents where PatronID=$bind1"
+
+Projection:
+"select PatronID, Name from Patron"
+
+Join Query:
 "select p.Name, p.DOB, p.Sex, p.Phone_Number, p.Postal_Code, a.Street, a.City, a.Province
 from Address a, Patron p
 where p.Postal_Code=a.Postal_Code and p.PatronID=$bind1
 group by p.PatronID, p.Name, p.DOB, p.Sex, p.Phone_Number, p.Postal_Code, a.Street, a.City, a.Province"
 
+~~
+
+Other queries in patron.php:
+
 "select m.MembershipID, m.Start_Date, me.End_Date, m.Amount_Paid, m.Payment_Type
 from Membership m, MembershipExpiry me
 where m.PatronID=me.PatronID and m.Start_Date=me.Start_Date and m.PatronID=$bind1"
-
-"select Name, DOB, Sex, Relationship_To_Patron from Dependents where PatronID=$bind1"
 
 "select l.LocationID, l.Location_Name, v.visitdate
 from Visits v, Location l
@@ -50,16 +71,5 @@ Amount_Paid=(select Amount_Paid from Membership where MembershipID=$bind1)"
   Amount_Paid=(select Amount_Paid from Membership where MembershipID=$deletedMembershipID_membership)"
 
 "delete from Membership where MembershipID=$deletedMembershipID_membership"
-
-"insert into PatronLeasesLocker (PatronID,Locker_Num, LocationID, Lease_Start_Date, Lease_End_Date) values ($bind1, $bind2, $bind3, date '$bind4', date '$bind5')"
-
-"update PatronLeasesLocker
-set Lease_Start_Date=date '$bind4', Lease_End_Date=date '$bind5'
-where PatronID=$bind1 and Locker_Num=$bind2 and LocationID=$bind3"
-
-"delete from patronleaseslocker
-where PatronID=$deletedPatronID_patronleaseslocker and Locker_Num=$deletedLockerNum_patronleaseslocker and LocationID=$deletedLocationID_patronleaseslocker"
-
-"select PatronID, Name from Patron"
 
 "select l.LocationID, l.Location_Name from Location l order by locationID"
