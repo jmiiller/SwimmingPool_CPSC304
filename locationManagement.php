@@ -76,19 +76,17 @@ if ($conn) {
     printTable($roomCountResult, $roomCountColumnNames, "Number of Rooms per Location", "LocationRooms");
 
     // Show Locations that have all Room Types
-    $conn->query("CREATE VIEW locationRooms AS 
-      SELECT l.LocationID, l.Location_Name
-      FROM Location l, Room r
-      WHERE l.LocationID=r.LocationID");
-    $conn->query("CREATE VIEW uniqueRoomTypes AS
-      SELECT DISTINCT Room_Type
-      FROM Room");
     $allRoomsResult = $conn->query("
-	SELECT DISTINCT x.LocationID, x.Location_Name 
-	FROM locationRooms x 
+	SELECT DISTINCT x.LocationID, x.Location_Name
+	FROM Location x
 	WHERE NOT EXISTS(
-		SELECT y.Room_Type 
-		FROM uniqueRoomTypes y )");
+		SELECT y.Room_Type
+		FROM RoomCapacity y
+		WHERE NOT EXISTS(
+			SELECT z.Room_Type
+			FROM Room z
+			WHERE z.LocationID=x.LocationID AND z.Room_Type=y.Room_Type))");
+	
     $allRoomsColumnNames = array("LocationID", "Location_Name");
     printTable($allRoomsResult, $allRoomsColumnNames, "Locations with All Room Types", "LocationsWithAllRooms");
 } else {
