@@ -61,6 +61,18 @@
    </p>
 </form>
 
+<!-- Patron -->
+<p> Delete Patron </p>
+<p><font size="2">PatronID</font></p>
+<form method="POST" action="patron.php">
+<!-- refreshes page when submitted -->
+
+   <p>
+      <input type="text" name="deletedPatronID_patron" size="6">
+      <input type="submit" value="Delete" name="delete_patron">
+   </p>
+</form>
+
 <!-- Dependents -->
 <p>Add Dependent</p>
 <p>
@@ -223,7 +235,7 @@ function printTable($resultFromSQL, $namesOfColumnsArray, $namesOfSQLArray, $tab
 if ($conn) {
 	if (array_key_exists('selectPatronID', $_POST)) {
 		$bind1 = $_POST['insPatronID'];
-		
+
 		// Select data...
 		$result = $conn->query("select p.Name, p.DOB, p.Sex, p.Phone_Number, p.Postal_Code, a.Street, a.City, a.Province
 		from Address a, Patron p
@@ -232,7 +244,7 @@ if ($conn) {
 		$columnNames = array("Name", "DOB", "Sex", "Phone #", "Postal Code", "Street", "City", "Province");
 		$selectNames = array("Name", "DOB", "Sex", "Phone_Number", "Postal_Code", "Street", "City", "Province");
 		printTable($result, $columnNames, $selectNames, "Patron", "Patron");
-		
+
 		// Select data...
 		$result = $conn->query("select m.MembershipID, m.Start_Date, me.End_Date, m.Amount_Paid, m.Payment_Type
 		from Membership m, MembershipExpiry me
@@ -264,7 +276,7 @@ if ($conn) {
 		printTable($result, $columnNames, $selectNames, "Lockers", "PatronLeasesLocker");
 	} else if (array_key_exists('selectLocationID', $_POST)) {
 		$bind1 = $_POST['queryLocationID'];
-		
+
 		// Select data...
 		$result = $conn->query("select l.Location_Name, l.Opening_Time, l.Closing_Time, l.Phone_Number, l.Postal_Code, a.Street, a.City, a.Province
 		from Location l, Address a
@@ -280,7 +292,7 @@ if ($conn) {
 		$columnNames = array("Room Type", "Capacity");
 		$selectNames = array("Room_Type", "Capacity");
 		printTable($result, $columnNames, $selectNames, "Facilities", "Facilities");
-		
+
 		// Select data...
 		$result = $conn->query("select lo.Locker_Num, lo.Locker_Condition
 		from Location l, Locker lo
@@ -299,10 +311,14 @@ if ($conn) {
 			if ($conn->query($sql) == False) {
 				echo "Failed Insert";
 			}
+		} else if(array_key_exists('delete_patron', $_POST)) {
+			$deletedPatronID_patron = $_POST['deletedPatronID_patron'];
+
+			$conn->query("delete from Patron where PatronID=$deletedPatronID_dependents");
 		} else if(array_key_exists('delete_dependents', $_POST)) {
 			$deletedName_dependents = $_POST['deletedName_dependents'];
 			$deletedPatronID_dependents = $_POST['deletedPatronID_dependents'];
-			
+
 			$conn->query("delete from Dependents where Name='$deletedName_dependents' and PatronID=$deletedPatronID_dependents");
 		} else if(array_key_exists('insert_membership', $_POST)) {
 			$bind1 = $_POST['insMembershipID_membership'];
@@ -311,7 +327,7 @@ if ($conn) {
 			$bind4 = $_POST['insPaymentType_membership'];
 			$bind5 = $_POST['insAmountPaid_membership'];
 			$bind6 = $_POST['insPatronID_membership'];
-			
+
 			$sql = "insert into Membership (MembershipID, Start_Date, Payment_Type, Amount_Paid, PatronID) values ('$bind1', date '$bind2', '$bind4', $bind5 , $bind6)";
 			if ($conn->query($sql) == False) {
 				echo "Failed Insert";
@@ -319,7 +335,7 @@ if ($conn) {
 				$sql = "insert into MembershipExpiry (PatronID, Start_Date, Amount_Paid, End_Date) values ($bind6, date '$bind2', $bind5, date '$bind3')";
 				if ($conn->query($sql) == False) {
 					echo "Failed Insert";
-					
+
 					$conn->query("delete from MembershipExpiry where
 					PatronID=(select PatronID from Membership where MembershipID=$bind1) and
 					Start_Date=(select Start_Date from Membership where MembershipID=$bind1) and
@@ -339,7 +355,7 @@ if ($conn) {
 			$bind3 = $_POST['insLocationID_patronleaseslocker'];
 			$bind4 = $_POST['insLeaseStartDate_patronleaseslocker'];
 			$bind5 = $_POST['insLeaseEndDate_patronleaseslocker'];
-			
+
 			$sql = "insert into PatronLeasesLocker (PatronID,Locker_Num, LocationID, Lease_Start_Date, Lease_End_Date) values ($bind1, $bind2, $bind3, date '$bind4', date '$bind5')";
 			if ($conn->query($sql) == False) {
 				echo "Failed Insert";
@@ -350,7 +366,7 @@ if ($conn) {
 			$bind3 = $_POST['insLocationID_patronleaseslocker'];
 			$bind4 = $_POST['insLeaseStartDate_patronleaseslocker'];
 			$bind5 = $_POST['insLeaseEndDate_patronleaseslocker'];
-			
+
 			$sql = "update PatronLeasesLocker
 			set Lease_Start_Date=date '$bind4', Lease_End_Date=date '$bind5'
 			where PatronID=$bind1 and Locker_Num=$bind2 and LocationID=$bind3";
@@ -375,6 +391,12 @@ if ($conn) {
 		$columnNames = array("LocationID", "Location Name");
 		$selectNames = array("LocationID", "Location_Name");
 		printTable($result, $columnNames, $selectNames, "Locations", "LocationAll");
+
+    // Select data...
+		$result = $conn->query("select d.name, d.patronid, d.Relationship_To_Patron from Dependents d order by d.patronid");
+		$columnNames = array("Name", "PatronID", "Relationship To Patron");
+		$selectNames = array("Name", "PatronID", "Relationship_To_Patron");
+		printTable($result, $columnNames, $selectNames, "Dependents", "DependentsAll");
 	}
 } else {
 	echo "cannot connect";
