@@ -24,6 +24,9 @@ from Address a, Patron p
 where p.Postal_Code=a.Postal_Code and p.PatronID=$bind1
 group by p.PatronID, p.Name, p.DOB, p.Sex, p.Phone_Number, p.Postal_Code, a.Street, a.City, a.Province"
 
+Aggregation Query:
+"SELECT COUNT(StaffID) AS Num FROM Lifeguard WHERE StaffID=$bind1"
+
 ~~
 
 Other queries in patron.php:
@@ -73,3 +76,58 @@ Amount_Paid=(select Amount_Paid from Membership where MembershipID=$bind1)"
 "delete from Membership where MembershipID=$deletedMembershipID_membership"
 
 "select l.LocationID, l.Location_Name from Location l order by locationID"
+
+~~
+
+Other queries in staff.php:
+
+"SELECT COUNT(StaffID) AS Num FROM CleaningStaff WHERE StaffID=$bind1"
+
+"SELECT s.StaffID, s.Name, s.DOB, s.Sex, s.Pay_Rate, s.YTD_Pay, s.Hours_Worked_In_Current_Period, s.LocationID, l.CPR_Certification_Expiry_Date, l.SupervisorID
+			FROM Staff s, Lifeguard l
+			WHERE l.StaffID=$bind1 AND s.StaffID = l.StaffID"
+			
+"SELECT StaffID, Name, DOB, Sex, Pay_Rate, YTD_Pay, Hours_Worked_In_Current_Period, LocationID
+			FROM Staff
+			WHERE StaffID=$bind1"
+			
+"SELECT cscr.Room_Num, cscr.LocationID, rcs.Last_Cleaned_Date, rcs.Additional_Notes FROM CleaningStaffCleansRoom cscr, RoomCleaningStatus rcs WHERE cscr.Room_Num=rcs.Room_Num AND cscr.LocationID=rcs.LocationID AND cscr.StaffID=$bind1"
+
+"SELECT csml.Locker_Num, csml.LocationID, lms.Last_Maintenance_Date, lms.Additional_Notes FROM LockerMaintenanceStatus lms, CleaningStaffMaintainsLocker csml WHERE lms.Locker_Num=csml.Locker_Num AND lms.LocationID=csml.LocationID AND csml.StaffID=$bind1"
+
+"SELECT StaffID, Name, DOB, Sex, Pay_Rate, YTD_Pay, Hours_Worked_In_Current_Period, LocationID  FROM Staff WHERE StaffID=$bind1"
+
+"SELECT Shiftdate, Start_Time, End_Time FROM StaffWorksShift WHERE StaffID=$bind1"
+
+"insert into Staff(StaffID, Name, DOB, Sex, Pay_Rate, YTD_Pay,Hours_Worked_In_Current_Period, LocationID) values($bind1, '$bind2', date '$bind3', '$bind4', $bind5, $bind6, $bind7, $bind8)"
+
+"update Staff
+		set Name='$bind2', DOB=date '$bind3', Sex='$bind4', Pay_Rate=$bind5, YTD_Pay=$bind6, Hours_Worked_In_Current_Period=$bind7, LocationID=$bind8
+		WHERE StaffID=$bind1"
+		
+"delete FROM Staff WHERE StaffID='$staffToDelete'"
+
+"delete FROM Lifeguard WHERE StaffID='$staffToDelete'"
+
+"delete FROM CleaningStaff WHERE StaffID='$staffToDelete'"
+
+"insert into Lifeguard (StaffID, CPR_Certification_Expiry_Date, SupervisorID) values ($bind1, $bind2, $bind3)"
+
+"update Lifeguard set CPR_Certification_Expiry_Date=date '$bind2', SupervisorID=$bind3
+		WHERE StaffID=$bind1"
+
+"insert into CleaningStaff (StaffID) values ($bind1)"
+
+"insert into Shift (Shiftdate, Start_Time, End_Time) values (date '$bind1', $bind2, $bind3)"
+
+"insert into StaffWorksShift (StaffID, Shiftdate, Start_Time, End_Time) values ($bind1, date '$bind2', $bind3, $bind4)"
+
+"SELECT StaffID, Name 
+      FROM Staff 
+      WHERE StaffID NOT IN (SELECT StaffID FROM Lifeguard) AND StaffID NOT IN (SELECT StaffID FROM CleaningStaff)"
+	  
+"SELECT lifeguard.StaffID, staff.Name FROM Lifeguard lifeguard, Staff staff WHERE staff.StaffID=lifeguard.StaffID"
+
+"SELECT cstaff.StaffID, staff.Name FROM CleaningStaff cstaff, Staff staff WHERE staff.StaffID=cstaff.StaffID"
+
+"SELECT * FROM Shift"
