@@ -1,6 +1,17 @@
 Project Description:
-~~ Someone will need to provide a brief project description. ~~
+(a)Platform:
+We used the CS Undergrad Oracle installation and provided PHP/Apache.
 
+(b)Functionality:
+Our project models a swimming pool, where we have two separate interfaces for our two main groups of users in our system: Patrons and Staff. The interfaces are determined by the role’s login. For example, a lifeguard staff can only view his own information and no one else’s.
+
+Patrons are the customers visiting the swimming pool. In order for Patrons to be in our system, they must have a membership. Patrons’ interface allows them to view pool location information, including phone number, address, and hours, and rooms; purchase and manage memberships online; view their latest visit time/date; reserve pool lockers; as well as manage their dependents. For example, patrons can update their membership status through purchases of different membership lengths; lease specific pool lockers and view their status; and update their list of dependent patrons through inputting their dependents’ information into the interface, if they have any.
+
+Staff includes two categories, Lifeguards and Cleaning staff. All staff are able to view their shifts, pool equipment statuses, and the maintenance statuses of pool rooms and lockers at their location. Lifeguards are able to view who their superior/senior lifeguard is. Cleaning staff are able to update room and pool equipment statuses. For example, all staff are able to request to see all of their shifts in the past month or year, as well as their personal information and YTD earnings; all staff can also view the number of certain equipment at their location, then have cleaning staff buy more and update the equipment count through input; and cleaning staff can add additional notes on a certain room after cleaning or inspection through text input.
+
+Also, the system is able to show the different location situation, such as location’s ID, location’s name and the number of rooms it has.
+
+All the queries are added, including Join, Aggregation, Group-by and Division query.
 
 Schema Changes:
 #1 - Location Schema: "Opening_Time" and "Closing_Time" field types changed from TIME to SMALLINT. This is because Oracle does not have a time datatype that we felt could appropriately represent these two fields.
