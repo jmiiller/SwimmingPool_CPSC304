@@ -314,7 +314,7 @@ if ($conn) {
 		} else if(array_key_exists('delete_patron', $_POST)) {
 			$deletedPatronID_patron = $_POST['deletedPatronID_patron'];
 
-			$conn->query("delete from Patron where PatronID=$deletedPatronID_dependents");
+			$conn->query("delete from Patron where PatronID=$deletedPatronID_patron");
 		} else if(array_key_exists('delete_dependents', $_POST)) {
 			$deletedName_dependents = $_POST['deletedName_dependents'];
 			$deletedPatronID_dependents = $_POST['deletedPatronID_dependents'];
