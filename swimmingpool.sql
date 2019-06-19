@@ -101,7 +101,7 @@ CREATE TABLE Dependents(
 CREATE TABLE Locker(
 	Locker_Num INTEGER,
 	LocationID INTEGER,
-	Condition CHAR(15),
+	Locker_Condition CHAR(15),
 	PRIMARY KEY (Locker_Num, LocationID),
 	FOREIGN KEY (LocationID) REFERENCES Location(LocationID) ON DELETE CASCADE);
 
@@ -164,7 +164,7 @@ CREATE TABLE Room(
 	Room_Num INTEGER,
 	LocationID INTEGER,
 	Room_Type CHAR(20),
-	Condition CHAR(10),
+	Room_Condition CHAR(10),
 	PRIMARY KEY (Room_Num, LocationID),
 	FOREIGN KEY (LocationID) REFERENCES Location(LocationID) ON DELETE CASCADE,
 	FOREIGN KEY (Room_Type) REFERENCES RoomCapacity(Room_Type));
@@ -334,97 +334,97 @@ INSERT INTO Equipment
 VALUES(5, 5, 2);
 
 INSERT INTO Patron
-VALUES(1, 'Chris', to_date('23/05/1987', 'DD/MM/YYYY'), 'M', '7786826666', 'V5H4N2');
+VALUES(1, 'Chris', date '1998-06-06', 'M', '7786826666', 'V5H4N2');
 
 INSERT INTO Patron
-VALUES(2, 'Jeff', to_date('13/06/1991', 'DD/MM/YYYY'), 'M', '6046804567', 'V5H1Z5');
+VALUES(2, 'Jeff', date '1991-06-13', 'M', '6046804567', 'V5H1Z5');
 
 INSERT INTO Patron
-VALUES(3, 'Tim', to_date('15/01/1994', 'DD/MM/YYYY'), 'M', '6040624347', 'V6Y2B6');
+VALUES(3, 'Tim', date '1994-01-15', 'M', '6040624347', 'V6Y2B6');
 
 INSERT INTO Patron
-VALUES(4, 'Illean', to_date('01/11/1978', 'DD/MM/YYYY'), 'M', '6049871234', 'V6X4C7');
+VALUES(4, 'Illean', date '2000-01-23', 'M', '6049871234', 'V6X4C7');
 
 INSERT INTO Patron
-VALUES(5, 'Matthew', to_date('27/12/1997', 'DD/MM/YYYY'), 'M', '6134565798', 'V3L0G2');
+VALUES(5, 'Matthew', date '1997-12-27', 'M', '6134565798', 'V3L0G2');
 
 INSERT INTO Patron
-VALUES(6, 'Joe', to_date('19/05/1982', 'DD/MM/YYYY'), 'M', '7786820527', 'V3T2W1');
+VALUES(6, 'Joe', date '1982-09-05', 'M', '7786820527', 'V3T2W1');
 
 INSERT INTO Visits
-VALUES(1, 1, to_date('04/04/2019', 'DD/MM/YYYY'));
+VALUES(1, 1, date '2019-04-04');
 
 INSERT INTO Visits
-VALUES(2, 2, to_date('04/04/2019', 'DD/MM/YYYY'));
+VALUES(2, 2, date '2019-04-04');
 
 INSERT INTO Visits
-VALUES(2, 3, to_date('19/04/2019', 'DD/MM/YYYY'));
+VALUES(2, 3, date '2019-04-07');
 
 INSERT INTO Visits
-VALUES(3, 4, to_date('23/02/2019', 'DD/MM/YYYY'));
+VALUES(3, 4, date '2019-02-23');
 
 INSERT INTO Visits
-VALUES(4, 5, to_date('04/12/2018', 'DD/MM/YYYY'));
+VALUES(4, 5, date '2019-02-23');
 
 INSERT INTO Visits
-VALUES(5, 6, to_date('04/04/2019', 'DD/MM/YYYY'));
+VALUES(5, 6, date '2019-04-04');
 
 INSERT INTO Membership
-VALUES(101, to_date('05/05/2019', 'DD/MM/YYYY'), 'Visa', 9.99, 1);
+VALUES(101, date '2019-05-05', 'Visa', 9.99, 1);
 
 INSERT INTO Membership
-VALUES(102, to_date('15/05/2019', 'DD/MM/YYYY'), 'Cash', 9.99, 2);
+VALUES(102, date '2019-05-15', 'Cash', 9.99, 2);
 
 INSERT INTO Membership
-VALUES(103, to_date('16/05/2019', 'DD/MM/YYYY'), 'Visa', 9.99, 3);
+VALUES(103, date '2019-05-16', 'Visa', 9.99, 3);
 
 INSERT INTO Membership
-VALUES(104, to_date('01/05/2019', 'DD/MM/YYYY'), 'Cash', 9.99, 4);
+VALUES(104, date '2019-05-01', 'Cash', 9.99, 4);
 
 INSERT INTO Membership
-VALUES(105, to_date('25/05/2019', 'DD/MM/YYYY'), 'Visa', 29.99, 5);
+VALUES(105, date '2019-05-25', 'Visa', 29.99, 5);
 
 INSERT INTO Membership
-VALUES(106, to_date('05/06/2019', 'DD/MM/YYYY'), 'Visa', 9.99, 6);
+VALUES(106, date '2019-06-05', 'Visa', 9.99, 6);
 
 INSERT INTO Membership
-VALUES(107, to_date('05/07/2019', 'DD/MM/YYYY'), 'Visa', 19.99, 6);
+VALUES(107, date '2019-07-05', 'Visa', 19.99, 6);
 
 INSERT INTO MembershipExpiry
-VALUES(1, to_date('05/05/2019', 'DD/MM/YYYY'), 9.99, to_date('05/06/2019', 'DD/MM/YYYY'));
+VALUES(1, date '2019-05-05', 9.99, date '2019-06-05');
 
 INSERT INTO MembershipExpiry
-VALUES(2, to_date('15/05/2019', 'DD/MM/YYYY'), 9.99, to_date('15/06/2019', 'DD/MM/YYYY'));
+VALUES(2, date '2019-05-15', 9.99, date '2019-06-15');
 
 INSERT INTO MembershipExpiry
-VALUES(3, to_date('16/05/2019', 'DD/MM/YYYY'), 9.99, to_date('16/06/2019', 'DD/MM/YYYY'));
+VALUES(3, date '2019-05-16', 9.99, date '2019-06-16');
 
 INSERT INTO MembershipExpiry
-VALUES(4, to_date('01/05/2019', 'DD/MM/YYYY'), 9.99, to_date('01/06/2019', 'DD/MM/YYYY'));
+VALUES(4, date '2019-05-01', 9.99, date '2019-06-01');
 
 INSERT INTO MembershipExpiry
-VALUES(5, to_date('25/05/2019', 'DD/MM/YYYY'), 29.99, to_date('25/08/2019', 'DD/MM/YYYY'));
+VALUES(5, date '2019-05-25', 29.99, date '2019-08-25');
 
 INSERT INTO MembershipExpiry
-VALUES(6, to_date('05/06/2019', 'DD/MM/YYYY'), 9.99, to_date('05/07/2019', 'DD/MM/YYYY'));
+VALUES(6, date '2019-06-05', 9.99, date '2019-07-05');
 
 INSERT INTO MembershipExpiry
-VALUES(6, to_date('05/07/2019', 'DD/MM/YYYY'), 19.99, to_date('05/09/2019', 'DD/MM/YYYY'));
+VALUES(6, date '2019-07-05', 19.99, date '2019-09-05');
 
 INSERT INTO Dependents
-VALUES('Christine', 1, to_date('24/05/1987', 'DD/MM/YYYY'), 'F', 'Wife');
+VALUES('Christine', 1, date '1987-05-24', 'F', 'Wife');
 
 INSERT INTO Dependents
-VALUES('Jim', 1, to_date('14/06/1990', 'DD/MM/YYYY'), 'M', 'Brother');
+VALUES('Jim', 1, date '1990-06-14', 'M', 'Brother');
 
 INSERT INTO Dependents
-VALUES('Todd', 1, to_date('16/01/1995', 'DD/MM/YYYY'), 'M', 'Brother');
+VALUES('Todd', 1, date '1995-01-16', 'M', 'Brother');
 
 INSERT INTO Dependents
-VALUES('Amber', 4, to_date('02/11/1959', 'DD/MM/YYYY'), 'F', 'Mother');
+VALUES('Amber', 4, date '1959-11-02', 'F', 'Mother');
 
 INSERT INTO Dependents
-VALUES('Tomas', 5, to_date('28/12/1966', 'DD/MM/YYYY'), 'M', 'Father');
+VALUES('Tomas', 5, date '1966-12-28', 'M', 'Father');
 
 INSERT INTO Locker
 VALUES(1,1, 'Out of Order');
@@ -490,67 +490,67 @@ INSERT INTO Locker
 VALUES(5,5, 'Out of Order');
 
 INSERT INTO PatronLeasesLocker
-VALUES(1, 1, 2, to_date('05/05/2019', 'DD/MM/YYYY'), to_date('05/05/2020', 'DD/MM/YYYY'));
+VALUES(1, 1, 2, date '2019-05-05', date '2020-05-05');
 
 INSERT INTO PatronLeasesLocker
-VALUES(2, 2, 1, to_date('15/05/2019', 'DD/MM/YYYY'), to_date('15/05/2020', 'DD/MM/YYYY'));
+VALUES(2, 2, 1, date '2019-05-15', date '2020-05-15');
 
 INSERT INTO PatronLeasesLocker
-VALUES(3, 3, 1, to_date('16/05/2019', 'DD/MM/YYYY'), to_date('16/05/2020', 'DD/MM/YYYY'));
+VALUES(3, 3, 1, date '2019-05-16', date '2020-05-16');
 
 INSERT INTO PatronLeasesLocker
-VALUES(4, 4, 2, to_date('01/05/2019', 'DD/MM/YYYY'), to_date('01/05/2020', 'DD/MM/YYYY'));
+VALUES(4, 4, 2, date '2019-05-01', date '2020-05-01');
 
 INSERT INTO PatronLeasesLocker
-VALUES(5, 4, 5, to_date('25/05/2019', 'DD/MM/YYYY'), to_date('25/05/2021', 'DD/MM/YYYY'));
+VALUES(5, 4, 5, date '2019-05-25', date '2020-05-25');
 
 INSERT INTO PatronLeasesLocker
-VALUES(5, 3, 5, to_date('25/05/2019', 'DD/MM/YYYY'), to_date('25/05/2021', 'DD/MM/YYYY'));
+VALUES(5, 3, 5, date '2019-05-25', date '2020-05-25');
 
 INSERT INTO PatronLeasesLocker
-VALUES(6, 1, 5, to_date('16/06/2019', 'DD/MM/YYYY'), to_date('16/06/2021', 'DD/MM/YYYY'));
+VALUES(6, 1, 5, date '2019-06-16', date '2021-05-25');
 
 INSERT INTO Staff
-VALUES(1001, 'Alex', to_date('01/01/1978', 'DD/MM/YYYY'), 'M', 25, 125, 8, 1);
+VALUES(1001, 'Alex', date '1978-01-01', 'M', 25, 125, 8, 1);
 
 INSERT INTO Staff
-VALUES(1002, 'Adam', to_date('01/01/1988', 'DD/MM/YYYY'), 'M', 25, 125, 8, 1);
+VALUES(1002, 'Adam', date '1988-02-01', 'M', 25, 125, 8, 1);
 
 INSERT INTO Staff
-VALUES(1003, 'Eric', to_date('20/01/1997', 'DD/MM/YYYY'), 'M', 25, 150, 20, 1);
+VALUES(1003, 'Eric', date '1997-02-10', 'M', 25, 150, 20, 1);
 
 INSERT INTO Staff
-VALUES(2001, 'Brandon', to_date('01/01/1979', 'DD/MM/YYYY'), 'M', 35, 200, 7, 2);
+VALUES(2001, 'Brandon', date '1997-02-10', 'M', 35, 200, 7, 2);
 
 INSERT INTO Staff
-VALUES(2002, 'Brian', to_date('01/01/1989', 'DD/MM/YYYY'), 'M', 35, 200, 7, 2);
+VALUES(2002, 'Brian', date '1989-08-09', 'M', 35, 200, 7, 2);
 
 INSERT INTO Staff
-VALUES(3001, 'Chloe', to_date('01/01/1980', 'DD/MM/YYYY'), 'F', 38, 220, 8, 3);
+VALUES(3001, 'Chloe', date '1979-07-18', 'F', 38, 220, 8, 3);
 
 INSERT INTO Staff
-VALUES(3002, 'Charles', to_date('01/01/1990', 'DD/MM/YYYY'), 'M', 35, 200, 7, 3);
+VALUES(3002, 'Charles', date '1991-05-18', 'M', 35, 200, 7, 3);
 
 INSERT INTO Staff
-VALUES(4001, 'David', to_date('01/01/1988', 'DD/MM/YYYY'), 'M', 27, 180, 8, 4);
+VALUES(4001, 'David', date '1988-02-01', 'M', 27, 180, 8, 4);
 
 INSERT INTO Staff
-VALUES(4002, 'Peter', to_date('01/01/1993', 'DD/MM/YYYY'), 'M', 35, 200, 7, 4);
+VALUES(4002, 'Peter', date '1992-12-30', 'M', 35, 200, 7, 4);
 
 INSERT INTO Staff
-VALUES(4003, 'Arthur', to_date('12/05/1992', 'DD/MM/YYYY'), 'M', 25, 200, 10, 4);
+VALUES(4003, 'Arthur', date '1992-12-30', 'M', 25, 200, 10, 4);
 
 INSERT INTO Staff
-VALUES(5001, 'Ellen', to_date('01/01/1991', 'DD/MM/YYYY'), 'F', 20, 90, 8, 5);
+VALUES(5001, 'Ellen', date '1991-05-18', 'F', 20, 90, 8, 5);
 
 INSERT INTO Staff
-VALUES(5002, 'Joyce', to_date('01/01/1995', 'DD/MM/YYYY'), 'F', 35, 200, 7, 5);
+VALUES(5002, 'Joyce', date '1994-04-30', 'F', 35, 200, 7, 5);
 
 INSERT INTO Staff
-VALUES(5003, 'Riana', to_date('01/01/1995', 'DD/MM/YYYY'), 'F', 25, 180, 7, 5);
+VALUES(5003, 'Riana', date '1994-04-30', 'F', 25, 180, 7, 5);
 
 INSERT INTO Staff
-VALUES(5004, 'Wendy', to_date('01/01/1995', 'DD/MM/YYYY'), 'F', 25, 180, 20, 5);
+VALUES(5004, 'Wendy', date '1995-04-30', 'F', 25, 180, 20, 5);
 
 INSERT INTO CleaningStaff
 VALUES(1002);
@@ -571,94 +571,94 @@ INSERT INTO CleaningStaff
 VALUES(5002);
 
 INSERT INTO Lifeguard
-VALUES(1001, to_date('01/01/2022', 'DD/MM/YYYY'), NULL);
+VALUES(1001, date '2022/06/24', NULL);
 
 INSERT INTO Lifeguard
-VALUES(1003, to_date('01/01/2022', 'DD/MM/YYYY'), 1001);
+VALUES(1003, date '2022/06/24', 1001);
 
 INSERT INTO Lifeguard
-VALUES(2001, to_date('01/01/2022', 'DD/MM/YYYY'), NULL);
+VALUES(2001, date '2022/06/24', NULL);
 
 INSERT INTO Lifeguard
-VALUES(3001, to_date('01/01/2022', 'DD/MM/YYYY'), NULL);
+VALUES(3001, date '2022/06/24', NULL);
 
 INSERT INTO Lifeguard
-VALUES(4001, to_date('01/01/2022', 'DD/MM/YYYY'), NULL);
+VALUES(4001, date '2022/06/24', NULL);
 
 INSERT INTO Lifeguard
-VALUES(5001, to_date('01/01/2022', 'DD/MM/YYYY'), NULL);
+VALUES(5001, date '2022/06/24', NULL);
 
 INSERT INTO Lifeguard
-VALUES(5004, to_date('01/01/2022', 'DD/MM/YYYY'), 5001);
+VALUES(5004, date '2022/06/24', 5001);
 
 INSERT INTO Shift
-VALUES(to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(date '2019-06-23', 600, 1400);
 
 INSERT INTO Shift
-VALUES(to_date('23/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(date '2019-06-23', 1400, 2200);
 
 INSERT INTO Shift
-VALUES(to_date('24/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(date '2019-06-24', 600, 1400);
 
 INSERT INTO Shift
-VALUES(to_date('24/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(date '2019-06-24', 1400, 2200);
 
 INSERT INTO Shift
-VALUES(to_date('25/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(date '2019-06-25', 600, 1400);
 
 INSERT INTO Shift
-VALUES(to_date('25/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(date '2019-06-25', 1400, 2200);
 
 INSERT INTO Shift
-VALUES(to_date('26/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(date '2019-06-26', 600, 1400);
 
 INSERT INTO Shift
-VALUES(to_date('26/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(date '2019-06-26', 1400, 2200);
 
 INSERT INTO Shift
-VALUES(to_date('27/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(date '2019-06-27', 600, 1400);
 
 INSERT INTO Shift
-VALUES(to_date('27/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(date '2019-06-27', 1400, 2200);
 
 INSERT INTO StaffWorksShift
-VALUES(1001, to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(1001, date '2019-06-23', 600, 1400);
 
 INSERT INTO StaffWorksShift
-VALUES(1002, to_date('23/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(1002, date '2019-06-23', 1400, 2200);
 
 INSERT INTO StaffWorksShift
-VALUES(1003, to_date('23/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(1003, date '2019-06-23', 1400, 2200);
 
 INSERT INTO StaffWorksShift
-VALUES(2001, to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(2001, date '2019-06-23', 600, 1400);
 
 INSERT INTO StaffWorksShift
-VALUES(2002, to_date('23/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(2002, date '2019-06-23', 1400, 2200);
 
 INSERT INTO StaffWorksShift
-VALUES(3001, to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(3001, date '2019-06-23', 600, 1400);
 
 INSERT INTO StaffWorksShift
-VALUES(3002, to_date('23/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(3002, date '2019-06-23', 1400, 2200);
 
 INSERT INTO StaffWorksShift
-VALUES(4001, to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(4001, date '2019-06-23', 600, 1400);
 
 INSERT INTO StaffWorksShift
-VALUES(4002, to_date('23/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(4002, date '2019-06-23', 1400, 2200);
 
 INSERT INTO StaffWorksShift
-VALUES(5001, to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(5001, date '2019-06-23', 600, 1400);
 
 INSERT INTO StaffWorksShift
-VALUES(5002, to_date('23/06/2019', 'DD/MM/YYYY'), 1400, 2200);
+VALUES(5002, date '2019-06-23', 1400, 2200);
 
 INSERT INTO StaffWorksShift
-VALUES(5003, to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(5003, date '2019-06-23', 600, 1400);
 
 INSERT INTO StaffWorksShift
-VALUES(5004, to_date('23/06/2019', 'DD/MM/YYYY'), 600, 1400);
+VALUES(5004, date '2019-06-23', 600, 1400);
 
 INSERT INTO RoomCapacity
 VALUES('Large Swimming Pool', 300);
@@ -715,40 +715,40 @@ INSERT INTO Room
 VALUES(3, 5, 'Large Swimming Pool', 'Fair');
 
 INSERT INTO RoomCleaningStatus
-VALUES(1, 1, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1, 1, date '2019-05-23', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(2, 1, to_date('20/06/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2, 1, date '2019/06/20', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(3, 1, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(3, 1, date '2019-05-23', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(1, 2, to_date('23/05/2019', 'DD/MM/YYYY'), 'Need tables and chairs on 05/27/2019');
+VALUES(1, 2, date '2019-05-23', 'Need tables and chairs on 05/27/2019');
 
 INSERT INTO RoomCleaningStatus
-VALUES(2, 2, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2, 2, date '2019-05-23', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(1, 3, to_date('23/06/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1, 3, date '2019-06-23', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(2, 3, to_date('23/06/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2, 3, date '2019-06-23', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(1, 4, to_date('23/05/2019', 'DD/MM/YYYY'), 'Closed on 05/25/2019');
+VALUES(1, 4, date '2019-05-23', 'Closed on 05/25/2019');
 
 INSERT INTO RoomCleaningStatus
-VALUES(2, 4, to_date('23/05/2019', 'DD/MM/YYYY'), 'Closed on 05/25/2019');
+VALUES(2, 4, date '2019-05-23', 'Closed on 05/25/2019');
 
 INSERT INTO RoomCleaningStatus
-VALUES(1, 5, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1, 5, date '2019-05-23', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(2, 5, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2, 5, date '2019-05-23', NULL);
 
 INSERT INTO RoomCleaningStatus
-VALUES(3, 5, to_date('23/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(3, 5, date '2019-05-23', NULL);
 
 INSERT INTO CleaningStaffCleansRoom
 VALUES(1002, 1, 1);
@@ -766,61 +766,61 @@ INSERT INTO CleaningStaffCleansRoom
 VALUES(5002, 1, 5);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(1,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1,1, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(2,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2,1, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(3,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(3,1, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(4,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(4,1, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(5,1, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(5,1, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(1,2, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1,2, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(2,2, to_date('20/05/2019', 'DD/MM/YYYY'), 'Repair scheduled 25/05/2019');
+VALUES(2,2, date '2019-05-20', 'Repair scheduled 25/05/2019');
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(3,2, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(3,2, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(4,2, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(4,2, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(1,3, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1,3, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(2,3, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2,3, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(3,3, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(3,3, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(1,4, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1,4, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(2,4, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2,4, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(3,4, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(3,4, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(1,5, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(1,5, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(2,5, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(2,5, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(3,5, to_date('20/05/2019', 'DD/MM/YYYY'), NULL);
+VALUES(3,5, date '2019-05-20', NULL);
 
 INSERT INTO LockerMaintenanceStatus
-VALUES(4,5, to_date('20/05/2019', 'DD/MM/YYYY'), 'Repair scheduled 27/05/2019');
+VALUES(4,5, date '2019-05-20', 'Repair scheduled 27/05/2019');
 
 INSERT INTO CleaningStaffMaintainsLocker
 VALUES(1002,1,1);
