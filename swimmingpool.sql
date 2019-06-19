@@ -706,13 +706,22 @@ INSERT INTO Room
 VALUES(2, 4, 'Large Gym', 'Excellent');
 
 INSERT INTO Room
-VALUES(1, 5, 'Medium Gym', 'Excellent');
+VALUES(1, 5, 'Large Gym', 'Excellent');
 
 INSERT INTO Room
-VALUES(2, 5, 'Small Changing Room', 'Good');
+VALUES(2, 5, 'Medium Gym', 'Excellent');
 
 INSERT INTO Room
-VALUES(3, 5, 'Large Swimming Pool', 'Fair');
+VALUES(3, 5, 'Small Changing Room', 'Good');
+
+INSERT INTO Room
+VALUES(4, 5, 'Medium Changing Room', 'Good');
+
+INSERT INTO Room
+VALUES(5, 5, 'Large Swimming Pool', 'Fair');
+
+INSERT INTO Room
+VALUES(6, 5, 'Medium Swimming Pool', 'Poor');
 
 INSERT INTO RoomCleaningStatus
 VALUES(1, 1, date '2019-05-23', NULL);
