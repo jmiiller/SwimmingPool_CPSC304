@@ -314,6 +314,13 @@ if ($conn) {
 		} else if(array_key_exists('delete_patron', $_POST)) {
 			$deletedPatronID_patron = $_POST['deletedPatronID_patron'];
 
+			$conn->query("delete from MembershipExpiry where PatronID=$deletedPatronID_patron");
+			$conn->query("delete from Membership where PatronID=$deletedPatronID_patron");
+			
+			$conn->query("delete from patronleaseslocker where PatronID=$deletedPatronID_patron");
+			
+			$conn->query("delete from Visits where PatronID=$deletedPatronID_patron");
+			
 			$conn->query("delete from Patron where PatronID=$deletedPatronID_patron");
 		} else if(array_key_exists('delete_dependents', $_POST)) {
 			$deletedName_dependents = $_POST['deletedName_dependents'];
@@ -392,8 +399,8 @@ if ($conn) {
 		$selectNames = array("LocationID", "Location_Name");
 		printTable($result, $columnNames, $selectNames, "Locations", "LocationAll");
 
-    // Select data...
-		$result = $conn->query("select d.name, d.patronid, d.Relationship_To_Patron from Dependents d order by d.patronid");
+		// Select data...
+		$result = $conn->query("select d.Name, d.PatronID, d.Relationship_To_Patron from Dependents d order by d.PatronID");
 		$columnNames = array("Name", "PatronID", "Relationship To Patron");
 		$selectNames = array("Name", "PatronID", "Relationship_To_Patron");
 		printTable($result, $columnNames, $selectNames, "Dependents", "DependentsAll");

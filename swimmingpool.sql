@@ -69,7 +69,7 @@ CREATE TABLE Visits(
 	visitdate DATE,
 	PRIMARY KEY (LocationID, PatronID),
 	FOREIGN KEY (LocationID) REFERENCES Location(LocationID),
-	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID) ON DELETE CASCADE);
+	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID));
 
 CREATE TABLE Membership(
 	MembershipID INTEGER,
@@ -79,7 +79,7 @@ CREATE TABLE Membership(
 	PatronID INTEGER NOT NULL,
 	PRIMARY KEY (MembershipID),
 	UNIQUE (PatronID, Start_Date),
-	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID) ON DELETE CASCADE);
+	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID));
 
 CREATE TABLE MembershipExpiry(
 	PatronID INTEGER,
@@ -87,7 +87,7 @@ CREATE TABLE MembershipExpiry(
 	Amount_Paid REAL,
 	End_Date DATE,
 	PRIMARY KEY (PatronID, Start_Date, Amount_Paid),
-	FOREIGN KEY (PatronID, Start_Date) REFERENCES Membership(PatronID, Start_Date) ON DELETE CASCADE);
+	FOREIGN KEY (PatronID, Start_Date) REFERENCES Membership(PatronID, Start_Date));
 
 CREATE TABLE Dependents(
 	Name CHAR(30),
@@ -112,7 +112,7 @@ CREATE TABLE PatronLeasesLocker(
 	Lease_Start_Date DATE,
 	Lease_End_Date DATE,
 	PRIMARY KEY (PatronID, Locker_Num, LocationID),
-	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID) ON DELETE CASCADE,
+	FOREIGN KEY (PatronID) REFERENCES Patron(PatronID),
 	FOREIGN KEY (Locker_Num, LocationID) REFERENCES Locker(Locker_Num, LocationID));
 
 CREATE TABLE Staff(
