@@ -183,8 +183,6 @@
 </style>
 </html>
 
-
-
 <?php
 
 /* This tells the system that it's no longer just parsing

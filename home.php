@@ -1,6 +1,6 @@
 <div id="buttons">
 	<button id="patron" onclick="window.location.href = 'patron.php';">Patron</button>
-	<button id="employee" onclick="window.location.href = 'employee.php';">Employee</button>
+	<button id="staff" onclick="window.location.href = 'staff.php';">Staff</button>
 </div>
 <html>
 <style>

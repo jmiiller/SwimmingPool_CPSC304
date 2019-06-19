@@ -9,3 +9,5 @@ Schema Changes:
 #4 - Shift: Changed "Start_Time" and "End_Time" field type from TIME to SMALLINT to maintain consistency with our representation of time in other schemas. Using SMALLINT also saves us space.
 #5 - StaffWorksShift: Changed "Start_Time" and "End_Time" field type from TIME to SMALLINT to maintain consistency with our representation of time in other schemas. Using SMALLINT also saves us space.
 #6 - Room: Made "Room_Type" field into a foreign key of RoomCapacity. Our TA suggested this to us after handing in Milestone 3.
+#7 - Renamed attributes Condition in Locker and Room to Locker_Condition and Room_Condition respectively. The XAMPP server did not like the attribute name Condition.
+#8 - MembershipExpiry - Added PatronID as a Primary Key as it did not work well with only Start_Date and Amount_Paid as Primary Keys.
