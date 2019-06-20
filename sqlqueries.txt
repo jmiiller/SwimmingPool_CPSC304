@@ -1,5 +1,3 @@
-~~Patron.php~~
-
 Interesting Queries (for milestone 6):
 
 Insertion:
@@ -48,7 +46,7 @@ WHERE NOT EXISTS(
 		FROM Room z
 		WHERE z.LocationID=x.LocationID AND z.Room_Type=y.Room_Type))"
 
-~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Other queries in patron.php:
 
@@ -110,7 +108,7 @@ Amount_Paid=(select Amount_Paid from Membership where MembershipID=$bind1)"
 
 "select d.name, d.patronid, d.Relationship_To_Patron from Dependents d order by d.patronid"
 
-~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Other queries in staff.php:
 
