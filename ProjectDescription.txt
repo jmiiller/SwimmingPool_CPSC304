@@ -22,22 +22,27 @@ Finally, the Patrons' interface allows patrons to purchase and remove membership
 add and remove dependents; add, update, and remove locker leases, and remove all
 of their patron information from the database.
 
-The Staff interface includes two categories, Lifeguards and Cleaning staff. All staff are
-able to view their own shifts and their own staff information (i.e. name, dob,
-sex, pay rate, ytd pay, hours worked in current pay period, location of work,
-cpr certification expiry date, and their supervisor), pool equipment statuses,
-and the maintenance statuses of pool rooms and lockers at their location.
-
+The Staff interface includes two categories, Lifeguards and Cleaning staff.
 The Staff interface allows staff to see a list of all current staff members
 (lifeguards, cleaning staff, and others), as well as all shifts worked.
 
-Finally, the Staff interface allows staff information to be added, updated, or deleted.
-Plus, shift times can be added and the staff members who worked those shifts can be recorded.
+Furthermore, lifeguards are able to view their own shifts and their
+own staff information (i.e. name, dob, sex, pay rate, ytd pay, hours worked in current pay period, location of work,
+cpr certification expiry date, and their supervisor). Cleaning staff are able to
+view this information, in addition to being able to see the lockers they have performed maintenance on,
+and the rooms they have cleaned.
+
+pool equipment statuses,
+and the maintenance statuses of pool rooms and lockers at their location.
+
+Finally, the Staff interface allows lifeguards, cleaning staff, and general
+staff to be added, updated, or deleted. Plus, shift times can be added and
+the staff members who worked those shifts can be recorded.
 
 Also, the system is able to show the aggregated location information, such as
 the number of rooms it has or the locations that contain all possible facilities.
 
-All the queries are added, including Join, Aggregation, Group-by and Division query.
+All the queries are added, including the Join, Aggregation, Group-by and Division queries.
 
 Schema Changes:
 #1 - Location Schema: "Opening_Time" and "Closing_Time" field types changed from TIME to SMALLINT. This is because Oracle does not have a time datatype that we felt could appropriately represent these two fields.
