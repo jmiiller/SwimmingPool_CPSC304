@@ -1,15 +1,41 @@
 Project Description:
 (a)Platform:
-We used the CS Undergrad Oracle installation and provided PHP/Apache.
+We used php, mysql, and apache for our project platform.
 
 (b)Functionality:
-Our project models a swimming pool, where we have two separate interfaces for our two main groups of users in our system: Patrons and Staff. The interfaces are determined by the role’s login. For example, a lifeguard staff can only view his own information and no one else’s.
+Our project models the database for a swimming pool chain.
+There are two separate interfaces for our two main groups of users in our
+system: Patrons and Staff.
 
-Patrons are the customers visiting the swimming pool. In order for Patrons to be in our system, they must have a membership. Patrons’ interface allows them to view pool location information, including phone number, address, and hours, and rooms; purchase and manage memberships online; view their latest visit time/date; reserve pool lockers; as well as manage their dependents. For example, patrons can update their membership status through purchases of different membership lengths; lease specific pool lockers and view their status; and update their list of dependent patrons through inputting their dependents’ information into the interface, if they have any.
+Patrons are the customers visiting the swimming pool. The Patrons’ interface allows
+users to view selected pool location information (i.e. phone number, address,
+opening and closing hours, street, city, postal code, province), the empty
+lockers available at the location (and their condition), and the facilities at
+the location.
 
-Staff includes two categories, Lifeguards and Cleaning staff. All staff are able to view their shifts, pool equipment statuses, and the maintenance statuses of pool rooms and lockers at their location. Lifeguards are able to view who their superior/senior lifeguard is. Cleaning staff are able to update room and pool equipment statuses. For example, all staff are able to request to see all of their shifts in the past month or year, as well as their personal information and YTD earnings; all staff can also view the number of certain equipment at their location, then have cleaning staff buy more and update the equipment count through input; and cleaning staff can add additional notes on a certain room after cleaning or inspection through text input.
+The Patron's interface also allows users to view their patron information (name, dob,
+sex, phone #, postal code, street, city, province), the memberships purchased
+by themselves, their dependents, all of their visits to each location,
+and the lockers they currently lease.
 
-Also, the system is able to show the different location situation, such as location’s ID, location’s name and the number of rooms it has.
+Finally, the Patrons' interface allows patrons to purchase and remove memberships;
+add and remove dependents; add, update, and remove locker leases, and remove all
+of their patron information from the database.
+
+The Staff interface includes two categories, Lifeguards and Cleaning staff. All staff are
+able to view their own shifts and their own staff information (i.e. name, dob,
+sex, pay rate, ytd pay, hours worked in current pay period, location of work,
+cpr certification expiry date, and their supervisor), pool equipment statuses,
+and the maintenance statuses of pool rooms and lockers at their location.
+
+The Staff interface allows staff to see a list of all current staff members
+(lifeguards, cleaning staff, and others), as well as all shifts worked.
+
+Finally, the Staff interface allows staff information to be added, updated, or deleted.
+Plus, shift times can be added and the staff members who worked those shifts can be recorded.
+
+Also, the system is able to show the aggregated location information, such as
+the number of rooms it has or the locations that contain all possible facilities.
 
 All the queries are added, including Join, Aggregation, Group-by and Division query.
 
@@ -21,4 +47,4 @@ Schema Changes:
 #5 - StaffWorksShift: Changed "Start_Time" and "End_Time" field type from TIME to SMALLINT to maintain consistency with our representation of time in other schemas. Using SMALLINT also saves us space.
 #6 - Room: Made "Room_Type" field into a foreign key of RoomCapacity. Our TA suggested this to us after handing in Milestone 3.
 #7 - Renamed attributes Condition in Locker and Room to Locker_Condition and Room_Condition respectively. The XAMPP server did not like the attribute name Condition.
-#8 - MembershipExpiry - Added PatronID as a Primary Key as it did not work well with only Start_Date and Amount_Paid as Primary Keys. 
+#8 - MembershipExpiry - Added PatronID as a Primary Key as it did not work well with only Start_Date and Amount_Paid as Primary Keys.
